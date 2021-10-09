@@ -12,3 +12,18 @@ public:
         
     }
 };
+
+
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int>& values){
+        int n=values.size();
+        int max_left=values[0]+0;
+        int ans=INT_MIN;
+        for(int j=1;j<n;j++){
+            max_left = max(max_left , values[j-1]+j-1);
+            ans = max(ans , max_left + values[j]-j);
+        }
+        return ans;
+    }
+};
