@@ -45,3 +45,56 @@ void solveB(){
       }ln;
 
 }
+
+
+
+//C
+
+
+int count(vector<int> arr) {
+   sort(arr.begin(), arr.end());
+
+   int n = arr.size();
+   int k = n / 4;
+     // rep(i,0,n){
+     //     cout<<arr[i]<<' ';
+     //  }ln;
+ 
+   int res = 0;
+   for (int i = k; i < n; ++i) res += arr[i];
+   return res;
+}
+ 
+void solveC() {
+   int n;
+   cin >> n;
+ 
+   vector<int> as(n), bs(n);
+   for (int i = 0; i < n; ++i) cin >> as[i];
+   for (int i = 0; i < n; ++i) cin >> bs[i];
+
+   int low = 0;
+   int high = n;
+   while(low != high) {
+      int mid = (low + high) >> 1;
+      as.resize(n + mid, 100);
+      bs.resize(n + mid, 0);
+ 
+      if (count(as) >= count(bs)) high = mid;
+      else low = mid + 1;
+   }
+   cout << low << '\n';
+
+   // int ctr=0;
+   // int l=0;
+   //   while(true) {
+   //     if (count(as) >= count(bs)) break;
+   //    ctr++;
+   //    l++;
+   //    as.resize(n + l, 100);
+   //    bs.resize(n + l, 0);
+ 
+   //    if (count(as) >= count(bs)) break;
+   // }
+   // cout << ctr << '\n';
+}
