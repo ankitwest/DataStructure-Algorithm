@@ -39,7 +39,8 @@ int lcm(int a, int b){  return a/gcd(a, b)*b; }
 
 #define ll long long
 #define int long long
-  
+const int mod = 1e9+7;
+int pow(int x, int y);
 
 void solveA(){
     int n;cin>>n;
@@ -247,6 +248,21 @@ void solveC(){
             ln;
 
 }    
+void solveD(){
+    int n,l,r;cin>>n>>l>>r;
+    vector<int> arr(n);
+    rep(i,0,n) cin>>arr[i];
+    sort(all(arr));
+    int ans =0;
+    tr(y,arr){
+        int len_y = log10(y)+1;
+        int d = pow(10LL,len_y);
+        int L = (l-y+d-1LL)/d;
+        int R = (r-y)/d;
+        ans += upper_bound(all(arr),R)-lower_bound(all(arr),L);
+    }
+    debug(ans);
+}
 
 
 int32_t main(){
@@ -260,6 +276,18 @@ int32_t main(){
 }
 
 
+int pow(int x, int y){
+    int res = 1;
+    x = x % mod;
+    while (y) {
+        if(y & 1) {
+            res = (res * x) % mod;
+        }
+        x = (x * x) % mod;
+        y = y>>1;
+    }
+    return res;
+}
 
 
 
