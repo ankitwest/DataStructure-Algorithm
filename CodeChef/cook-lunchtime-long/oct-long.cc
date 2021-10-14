@@ -92,8 +92,24 @@ void solveB(){
 }   
 
 void solveC(){
-	;
+	int n;cin >> n;
+	int d;cin>>d;
+	int no=n;
+	int pos=0; int ans=0;
+	while(no){
+		int ld = no%10;
+		pos++;
+		no/=10;
+		if(ld==d){
+			no = no*pow(10,pos);
+			no += (ld+1)*pow(10,pos-1);
+			ans = no-n;
+			pos=0;
+		}
+	}debug(ans);
+
 }
+
 int32_t main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     // freopen("input.txt", "r", stdin);
