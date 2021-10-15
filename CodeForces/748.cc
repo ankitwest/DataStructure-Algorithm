@@ -181,6 +181,28 @@ void solveE(){
 	cout<<ans<<endl;
 
 }
+
+void solveG(){
+	string s;
+        cin>>s;
+        int sum[s.size()];
+        sum[0]=0;
+        for (int i=0;i<s.size();i++) {
+            sum[i+1]=sum[i];
+            if (s[i]=='['||s[i]==']') {
+                if (i%2==1) sum[i+1]++;
+                else sum[i+1]--;
+            }
+        }
+        int q;
+        cin>>q;
+        for (int i=1;i<=q;i++) {
+        	int l,r;
+            cin>>l>>r;
+            cout<<abs(sum[r]-sum[l-1])<<endl;
+        }
+}
+
 int32_t main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     // freopen("input2.txt", "r", stdin);
