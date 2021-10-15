@@ -125,6 +125,62 @@ void solveD1(){
 		if (g == 0) debug(-1); else debug(g);
 }
 
+const int maxN  = 4e5+5;
+vector<int> adj[maxN];
+int vis[maxN];
+int deg[maxN];
+int n,k;
+
+void clean(){
+	for(int i=1;i<=n;i++){
+		adj[i].clear();
+		// vis[i]=0;
+		// deg[i]=0;
+	}
+}
+
+void solveE(){
+	cin>>n>>k;
+	int nodes=n;
+	int edges=n-1;
+	memset(vis,0,sizeof(vis));
+	memset(deg,0,sizeof(deg));
+	clean();
+
+	for(int i = 1;i <= edges;++i) {
+		int a,b;cin>>a>>b;
+		adj[a].push_back(b);
+		adj[b].push_back(a);
+		deg[a]++;deg[b]++;
+	}
+	
+	   if(n == 1) {cout<<0<<endl; return;}
+	
+	vector<int> leaves;
+	for(int i=1;i<=n;i++){
+		if(deg[i]==1) deg[i]--,leaves.push_back(i);
+	}
+
+	while(k>0 and !leaves.empty()){
+		vector<int> new_leaves;
+		for(auto leaf:leaves){
+			vis[leaf]=1;
+			for(auto v:adj[leaf]){
+				deg[v]--;
+				if(deg[v]==1) new_leaves.push_back(v);
+			}
+		}
+		k--;
+		leaves=new_leaves;
+	}
+
+	int ans=0;
+	for(int i=1;i<=n;i++){
+		if(vis[i]==0) ans++;
+	}
+	cout<<ans<<endl;
+
+}
 int32_t main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     // freopen("input2.txt", "r", stdin);
