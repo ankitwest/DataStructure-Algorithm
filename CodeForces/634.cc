@@ -15,6 +15,19 @@ int lcm(int a, int b){  return a/gcd(a, b)*b; }
 #define int long long
 const int mod  =  1e9+7;
 
+void solveB()  {
+        int n,a,b;  cin>>n>>a>>b;
+        string s="";
+        for(int i=0;i<n;i+=b){
+        	int j=0;
+        	while(j<b and s.size()<n){
+        		s += j+'a';
+        	j++;
+        	}
+        }
+        debug(s);
+}
+
 //Anti Suduko
 void solveD(){
 	vector<string> v;
