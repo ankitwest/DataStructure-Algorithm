@@ -2,7 +2,7 @@ class Solution{
 public:
     vector<int> kthLargest(int k, int arr[], int n) {
         priority_queue<int,vector<int>,greater<int>>minpq;
-        // sort(arr,arr+n);
+        
         vector<int> ans(n);
         for(int i=0;i<n;i++){
             if(minpq.size()<k)
