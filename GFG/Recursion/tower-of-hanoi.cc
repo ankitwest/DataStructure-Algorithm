@@ -17,3 +17,19 @@ class Solution{
 Expected Time Complexity: O(2N).
 Expected Auxiliary Space: O(N).
 
+
+
+class Solution{
+public:
+      long long toh(int N, int from, int to, int aux) {
+        if(N==0) 
+            return 0;
+
+         toh(N-1,from,aux,to);
+             cout<<"move disk "<<N<<" from rod "<<from<<" to rod "<<to<<endl;
+         toh(N-1,aux,to,from);
+        
+        return pow(2,N)-1;
+        
+    }
+};
