@@ -6,8 +6,8 @@ public:
         if(!root->left and !root->right){
             m[d]+=root->val;
         }
-        dfs(d+1,root->left);
-        dfs(d+1,root->right);
+        if(root->left) dfs(d+1,root->left);
+         if(root->right) dfs(d+1,root->right);
     }
     int deepestLeavesSum(TreeNode* root) {
        dfs(0,root);
