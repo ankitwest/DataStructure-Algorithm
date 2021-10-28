@@ -97,11 +97,20 @@ void solveD(){
             int a = x[i - 1] xor y[i - 1];
             y[i] =  a & (~x[i]);
     }
+    
+    for(int i=1;i<n;i++){
+            int a=x[i-1]^y[i-1];
+            // int k = (a&x[i])^(a);
+            int k = a&(x[i]^a);
+            y[i]=k;
+    }
 
     rep(i,0,n)
         debug0(y[i]);
 
     ln;
+    
+    
 
     // debug(11&(-14));
     // debug(14&(~14));
