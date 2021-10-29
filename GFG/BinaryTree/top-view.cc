@@ -16,10 +16,14 @@ class Solution
         for(int i=0;i<n;i++){
             auto p = q.front();q.pop();
             Node* node = p.first;
-            int h = p.second;
-            if(m[h]==0) m[h]=node->data;
-            if(node->left) q.push({node->left,h-1});
-            if(node->right) q.push({node->right,h+1});
+            int hd = p.second;
+            
+             if(m.find(hd)==m.end())
+                 m[hd]=curr->data;
+            if(node->left) 
+                q.push({node->left,hd-1});
+            if(node->right) 
+                q.push({node->right,hd+1});
         }
     }
     
