@@ -23,11 +23,14 @@ class Solution
         }
     }
     
-    for(auto x:m)
+    for(auto x:m){
+        // cout<<x.first<<" "<<x.second<<endl;
         v.push_back(x.second);
-
-    return v;
-    
     }
-
+    return v;
+    }
 };
+
+
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(N).
