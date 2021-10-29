@@ -14,14 +14,18 @@ class Solution
     while(!q.empty()){
     int n=q.size();
       for(int i=0;i<n;i++){     
-          Node* fr = q.front();   q.pop();
+          Node* curr = q.front();   q.pop();
 
-          if(i == n-1) v.push_back(fr->data);
-          if(fr->left)  q.push(fr->left);
-          if(fr->right)  q.push(fr->right);
+          if(i == n-1) 
+              v.push_back(curr->data);
+          if(curr->left)  
+              q.push(curr->left);
+          if(curr->right)  
+              q.push(curr->right);
            
         }
       }
+        return v;
     }
 };
 
