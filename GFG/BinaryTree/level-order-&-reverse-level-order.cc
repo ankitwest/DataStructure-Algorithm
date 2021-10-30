@@ -31,7 +31,7 @@ Expected Time Complexity: O(N)
     
     
     
-    
+Using Vector    
 vector<int> reverseLevelOrder(Node *node)
 {
      vector<int> ans;
@@ -57,3 +57,34 @@ vector<int> reverseLevelOrder(Node *node)
       reverse(ans.begin(),ans.end());
       return ans;
 }
+
+Using Stack
+
+vector<int> reverseLevelOrder(Node *node)
+{
+     vector<int> ans;
+      if(!node) return ans;
+      queue<Node*> q;
+      q.push(node);
+      
+      while(!q.empty()){
+        stack<int> st;
+          int n = q.size();
+          for(int i=0;i<n;i++){
+              Node* curr = q.front(); q.pop();
+              
+              st.push(curr->data);
+              if(curr->left)
+                q.push(curr->left);
+             if(curr->right)
+                q.push(curr->right);
+          }
+        while(!st.empty()){
+            ans.push_back(st.top()); st.pop();
+        }
+      }
+      reverse(ans.begin(),ans.end());
+      return ans;
+}
+
+Expected Time Complexity: O(N)
