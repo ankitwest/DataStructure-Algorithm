@@ -22,17 +22,14 @@ class Solution{
    return v;
   }
 };
-
-
 Expected Time Complexity: O(N).
 Expected Auxiliary Space: O(Height of the Tree).
   
   
   
   
-    //Right View
-  
-  class Solution
+//Right View  
+class Solution
 {
     public:
     vector<int> rightView(Node *root)
@@ -61,17 +58,13 @@ Expected Auxiliary Space: O(Height of the Tree).
         return v;
     }
 };
-
-
 Expected Time Complexity: O(N).
-Expected Auxiliary Space: O(Height of the Tree).
   
   
   
-  
-  //Top View
-  
-  class Solution
+ //Top View
+ //Using Hashing
+class Solution
 {
     public:
     vector<int> topView(Node *root)
@@ -106,16 +99,13 @@ Expected Auxiliary Space: O(Height of the Tree).
     return v;
     }
 };
-
-
 Expected Time Complexity: O(N)
-Expected Auxiliary Space: O(N).
   
   
   
   
-  // Bottom View
-  
+// Bottom View
+// Using Hashing
   class Solution {
   public:
     vector <int> bottomView(Node *root) {
@@ -147,8 +137,5 @@ Expected Auxiliary Space: O(N).
        
     }
 };
-
-
 Expected Time Complexity: O(N).
-Expected Auxiliary Space: O(N).
 
