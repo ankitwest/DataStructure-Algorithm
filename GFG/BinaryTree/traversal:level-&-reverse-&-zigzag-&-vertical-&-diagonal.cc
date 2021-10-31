@@ -7,8 +7,10 @@ class Solution
     {
       vector<int> v;
       if(!node) return v;
+        
       queue<Node*> q;
       q.push(node);
+        
       while(!q.empty()){
           int n = q.size();
           for(int i=0;i<n;i++){
@@ -34,6 +36,7 @@ vector<int> reverseLevelOrder(Node *node)
 {
      vector<int> ans;
       if(!node) return ans;
+    
       queue<Node*> q;
       q.push(node);
       
@@ -60,6 +63,7 @@ vector<int> reverseLevelOrder(Node *node)
 {
      vector<int> ans;
       if(!node) return ans;
+    
       queue<Node*> q;
       q.push(node);
       
@@ -96,18 +100,19 @@ Expected Time Complexity: O(N)
     	
     	queue<Node*> q;
     	q.push(root);
+        
     	int k=0;
     	while(!q.empty()){
     	    int n = q.size();
     	    vector<int> v;
     	    for(int i=0;i<n;i++){
     	        Node* curr = q.front();q.pop();
+                
     	        v.push_back(curr->data);
     	        if(curr->left)
     	            q.push(curr->left);
     	       if(curr->right)
     	            q.push(curr->right);
-    	        
     	    }
     	    if(k%2==1)
     	        reverse(v.begin(),v.end());
@@ -122,14 +127,18 @@ Expected Time Complexity: O(N).
     
     
     
-    //Vertical Traversal
-        vector<int> verticalOrder(Node *root)
+//Vertical Traversal
+//Using Hashing
+ vector<int> verticalOrder(Node *root)
     {
         vector<int> ans;
         if(!root) return ans;
+    
         queue<pair<Node*,int>> q;
         map<int,vector<int>>m;
+    
         q.push({root,0});
+    
         while(!q.empty()){
             int n = q.size();
             for(int i=0;i<n;i++){
@@ -157,5 +166,32 @@ Expected Time Complexity: O(N).
 Expected Time Complexity: O(N)
     
     
+    
+    
+ // Diagonal Traversal
+//Using Preorder and Hashing
+void preorder(Node* root,map<int,vector<int>> &m,int d){
+    if(!root) return;
+    
+    m[d].push_back(root->data);
+    if(root->left)
+        preorder(root->left,m,d+1);
+    if(root->right)
+        preorder(root->right,m,d);
+}
+vector<int> diagonal(Node *root)
+{
+   map<int,vector<int>>m;
+   int d = 0;
+   preorder(root,m,d);
+   
+   vector<int> ans;
+   for(auto x:m){
+       for(auto y:x.second)
+        ans.push_back(y);
+   }
+   return ans;
+}
+Expected Time Complexity: O(N).
     
     
