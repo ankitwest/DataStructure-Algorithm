@@ -1,5 +1,5 @@
 
-//level order traversal
+//Level order traversal
 class Solution
 {
     public:
@@ -24,14 +24,12 @@ class Solution
       return v;
     }
 };
-
-
 Expected Time Complexity: O(N)
 
     
     
-//reverse level order traversal    
-Using Vector    
+//Reverse level order traversal    
+//Using Vector    
 vector<int> reverseLevelOrder(Node *node)
 {
      vector<int> ans;
@@ -57,9 +55,7 @@ vector<int> reverseLevelOrder(Node *node)
       reverse(ans.begin(),ans.end());
       return ans;
 }
-
-Using Stack
-
+//Using Stack
 vector<int> reverseLevelOrder(Node *node)
 {
      vector<int> ans;
@@ -86,18 +82,13 @@ vector<int> reverseLevelOrder(Node *node)
       reverse(ans.begin(),ans.end());
       return ans;
 }
-
 Expected Time Complexity: O(N)
     
     
-    
-    
-    
-  //zigzag level order traversal    
-    
+     
+  // Zigzag level order traversal    
  class Solution{
     public:
-    //Function to store the zig zag order traversal of tree in a list.
     vector <int> zigZagTraversal(Node* root)
     {
     	vector<int> ans;
@@ -127,6 +118,44 @@ Expected Time Complexity: O(N)
     	return ans;
     }
 };
-
-
 Expected Time Complexity: O(N).
+    
+    
+    
+    //Vertical Traversal
+        vector<int> verticalOrder(Node *root)
+    {
+        vector<int> ans;
+        if(!root) return ans;
+        queue<pair<Node*,int>> q;
+        map<int,vector<int>>m;
+        q.push({root,0});
+        while(!q.empty()){
+            int n = q.size();
+            for(int i=0;i<n;i++){
+                auto p = q.front();q.pop();
+                Node* curr = p.first;
+                int hd = p.second;
+                
+                m[hd].push_back(curr->data);
+                if(curr->left)
+                q.push({curr->left,hd-1});
+                if(curr->right)
+                q.push({curr->right,hd+1});
+            }
+        }
+        
+        for(auto x:m){
+            vector<int> temp = x.second;
+            for(auto y:temp)
+                ans.push_back(y);
+        }
+        return ans;
+        
+    }
+};
+Expected Time Complexity: O(N)
+    
+    
+    
+    
