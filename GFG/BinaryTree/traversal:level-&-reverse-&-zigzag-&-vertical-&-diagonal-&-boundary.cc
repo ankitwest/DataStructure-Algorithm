@@ -194,4 +194,52 @@ vector<int> diagonal(Node *root)
 }
 Expected Time Complexity: O(N).
     
+   
     
+//    IMP
+// Boundary Traversal
+Class Solution{
+    public:
+    void leftBoundary(Node* root,vector<int> &v){
+        if(!root) return ;
+        if(root->left or root->right)
+            v.push_back(root->data);
+        if(root->left)
+            leftBoundary(root->left,v);
+        else if(root->right)
+            leftBoundary(root->right,v);
+    }
+    //inorder
+    void leafNodes(Node* root,vector<int> &v){
+        if(!root) return ;
+        leafNodes(root->left,v);
+        if(!root->left and !root->right)
+            v.push_back(root->data);
+        leafNodes(root->right,v);
+    }
+    
+    void rightBoundary(Node* root,vector<int> &v){
+        if(!root) return ;
+        if(root->right)
+            rightBoundary(root->right,v);
+        else if(root->left)
+            rightBoundary(root->left,v);
+        if(root->left or root->right)
+            v.push_back(root->data);
+    }
+    
+    vector <int> printBoundary(Node *root)
+    {
+        vector<int> v;
+       if(!root) return v;
+       v.push_back(root->data);
+       if(!root->left and !root->right) return v;
+       
+       leftBoundary(root->left,v);
+       leafNodes(root,v);
+       rightBoundary(root->right,v);
+       
+       return v;
+    }
+};
+Expected Time Complexity: O(N). 
