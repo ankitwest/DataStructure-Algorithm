@@ -40,3 +40,29 @@ class Solution
          return root->data == (sum(root->left) + sum(root->right));
     }
 };
+
+
+
+
+
+// Transform to Sum Tree
+class Solution {
+  public:
+    // Convert a given tree to a tree where every node contains sum of values of
+    // nodes in left and right subtrees in the original tree
+    int sum(Node* root){
+        if(!root) return 0;
+         
+        int ls = sum(root->left);
+        int rs = sum(root->right);
+        
+        int temp = root->data;
+        root->data = ls + rs;
+        return ls + temp + rs;
+    }
+    void toSumTree(Node *root)
+    {
+        if(!root) return ;
+        sum(root);
+    }
+};
