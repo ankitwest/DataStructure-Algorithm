@@ -1,6 +1,6 @@
-   
-// Function to check if two trees are identical.
-// Identical Trees
+
+// Identical Trees   
+	// Function to check if two trees are identical.
 class Solution
 {
     public:
@@ -17,21 +17,21 @@ class Solution
 
 
 
-
-// Mirror Trees
-// Function to convert a binary tree into its mirror tree.
+// Invert a tree
+	// Function to convert a binary tree into its mirror tree.
 class Solution {
   public:
-    void mirror(Node* root) 
+    void invert(Node* root) 
     {
         if(!root) return ;
-        mirror(root->left);
-        mirror(root->right);
-       swap(root->left,root->right);
-        
+	    
+        invert(root->left);
+        invert(root->right);
+        swap(root->left,root->right);
     }
 };
-// If two trees are mirror of each other
+
+	//Check if two trees are mirror of each other
     bool mirror(Node* root1,Node* root2){
         if(!root1 and !root2) return true;
         if(!root1 or !root2) return false;
@@ -43,8 +43,8 @@ class Solution {
 
 
 
-// Symmetric Trees
- // return true/false denoting whether the tree is Symmetric or not
+// Symmetric Tree
+	 // return true/false denoting whether the tree is Symmetric or not
 class Solution{
     public:
      bool mirror(Node* root1,Node* root2){
