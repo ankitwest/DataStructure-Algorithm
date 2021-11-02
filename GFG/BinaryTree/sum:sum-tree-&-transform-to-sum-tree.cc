@@ -6,12 +6,12 @@ class Solution
          if(!root) return 0;
          if(!root->left and !root->right) return root->data;
         
-        int leftSum = sum(root->left,flag);
-        int rightSum = sum(root->right,flag);
+        int ls = sum(root->left,flag);
+        int rs = sum(root->right,flag);
         
-        if(root->data != leftSum + rightSum)  flag = false;
+        if(root->data != ls + rs)  flag = false;
         
-         return leftSum + root->data + rightSum;
+         return ls + root->data + rs;
     }
     bool isSumTree(Node* root)
     {
