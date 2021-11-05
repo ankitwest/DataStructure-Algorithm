@@ -8,10 +8,11 @@ class Solution{
         if(sum==0) {
             ans.push_back(v); return;
         }
-
+        if(A[index]<=sum){
             v.push_back(A[index]);
             solve(A,sum-A[index],v,ans,index);
             v.pop_back();
+        }
 
         solve(A,sum,v,ans,index+1);
     }
