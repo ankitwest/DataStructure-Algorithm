@@ -24,6 +24,7 @@ public:
         return ans;
     }
 };
+Expected Time Complexity: O(X^2 * 2^N),  maybe
 
 // Combination Sum 2 
 // GFG
@@ -60,7 +61,7 @@ class Solution{
       return ans;
     }
 };
-
+Expected Time Complexity: O(2^N)   maybe
 
 
 // Combination Sum      M-2
