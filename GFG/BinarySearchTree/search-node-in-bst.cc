@@ -32,3 +32,20 @@ public:
         return root->data;
     }
 };
+
+// Insert a node in BST
+Node* insert(Node* root, int Key) {
+    if(!root) {
+        Node* root = new Node(Key);
+        return root;
+    }
+    if(Key==root->data) 
+         return root;
+    if(Key>root->data) 
+        root->right = insert(root->right,Key);
+    if(Key<root->data) 
+        root->left = insert(root->left,Key);
+    
+    return root;
+    
+}
