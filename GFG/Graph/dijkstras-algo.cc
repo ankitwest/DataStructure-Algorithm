@@ -29,3 +29,30 @@ class Solution{
     }
 };
 Expected Time Complexity: O(V^2).
+
+	
+	
+	int main(){
+		int n,m,source;
+	cin >> n >> m;
+	vector<pair<int,int> > g[n+1]; 	// 1-indexed adjacency list for of graph
+
+	int a,b,wt;
+	for(int i = 0; i<m ; i++){
+		cin >> a >> b >> wt;
+		g[a].push_back(make_pair(b,wt));
+		g[b].push_back(make_pair(a,wt));
+	}	
+	
+	cin >> S;
+	
+	dijkstra(V,adj,S);
+		 
+		 
+	cout << "The distances from source, " << source << ", are : \n";
+	for(int i = 1 ; i<=n ; i++)	cout << distTo[i] << " ";
+	cout << "\n";
+	
+	return 0;
+	
+}
