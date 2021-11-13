@@ -27,3 +27,29 @@ class Solution{
     }
 };
 Expected Time Complexity: O(NLogN).
+  
+  
+  
+  // Array to Balanced BST  
+  // return its preorder
+  class Soluiton{
+    public:
+    void build_BST(vector<int> &nums,vector<int> &v, int s,int e){
+        if(s<=e){
+            int mid = (s+e)/2;
+            v.push_back(nums[mid]);
+            build_BST(nums,v,s,mid-1);
+            build_BST(nums,v,mid+1,e);
+        }
+    }
+    vector<int> sortedArrayToBST(vector<int>& nums) {
+       vector<int> v;
+       int s=0,e=nums.size()-1;
+       build_BST(nums,v,s,e);
+       return v;
+    }
+  };
+Input: nums = {1,2,3,4,5,6,7}
+Ouput: {4,2,1,3,6,5,7}
+The preorder traversal of the following
+BST formed is {4,2,1,3,6,5,7} 
