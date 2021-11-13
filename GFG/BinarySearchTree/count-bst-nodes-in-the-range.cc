@@ -27,7 +27,7 @@ public:
 {
     if(!root) return 0;
        
-    if(root->data<l)
+    if(l>root->data)
         return getCount(root->right,l,h);
     else if(root->data>h)
         return getCount(root->left,l,h);
