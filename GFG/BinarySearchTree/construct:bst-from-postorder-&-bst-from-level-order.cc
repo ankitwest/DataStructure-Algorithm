@@ -44,3 +44,36 @@ Expected Time Complexity: O(Height of the BST)
  };
 Expected Time Complexity: O(N)
 
+
+  
+  
+  // Check if given array can represent possible preorder of BST
+  
+  class Solution {
+  public:
+    int canRepresentBST(int pre[], int n) {
+        stack<int> st;
+        int root=INT_MIN;
+        for(int i=0;i<n;i++){
+            if(pre[i]<root)
+                return 0;
+            while(!s.empty() and st.top()<pre[i]){
+                root=s.top(); st.pop();
+            }
+            st.push(pre[i]);
+        }
+        return 1;
+    }
+};
+N = 3
+arr = {2, 4, 3}
+Output: 1
+              2
+                \
+                 4
+                /
+               3
+               
+ N = 3
+Arr = {2, 4, 1}
+Output: 0
