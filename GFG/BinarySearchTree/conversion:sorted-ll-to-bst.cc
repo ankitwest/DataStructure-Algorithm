@@ -21,3 +21,13 @@ class Solution{
     }
 };
 Expected Time Complexity: O(N), N = number of Nodes
+
+
+Linked List: 1->2->3->4->5->6->7
+      4
+      /   \
+     2     6
+   /  \   / \
+  1   3  5   7  
+    preorder traversal of this 
+tree is 4 2 1 3 6 5 7
