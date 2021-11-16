@@ -15,3 +15,7 @@ class Solution{
     }
 };
 Expected Time Complexity : O(N)
+Input: 
+N = 5, arr[] [6 8 0 1 3]
+Output:
+8 -1 1 3 -1
