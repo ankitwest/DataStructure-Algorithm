@@ -6,7 +6,7 @@ class Solution{
         if(n==0) return 0;
         int x = floor(log2(n));
         int powerof2 = pow(2,x)/2*x;  // (1<<(x-1))*x;
-        int count = n-pow(2,x)+1;  // n-1<<x+1;
+        int count = n-pow(2,x)+1;  // n-(1<<x)+1;
         int rest = n-pow(2,x);   //n-(1<<x);
         int ans = powerof2+count+solve(rest);
         return ans;
