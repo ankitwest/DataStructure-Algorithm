@@ -55,3 +55,41 @@ Node * convertToDLL(Node *root){
     return head;
 }
 };
+
+  
+  
+  
+  
+  
+  
+  //Function to make binary tree from linked list.
+  void convert(Node *head, TreeNode *&root) {
+    queue<TreeNode*>q;
+    root = new TreeNode(head->data);
+    q.push(root);
+    
+    while(!q.empty()){
+        TreeNode* curr = q.front();q.pop();
+        if(head->next){
+            curr->left = new TreeNode(head->next->data);
+            q.push(curr->left);
+            head = head->next;
+        }else if(head->next){
+            curr->right = new TreeNode(head->next->data);
+            q.push(curr->right);
+            head = head->next;
+        }
+    }
+}
+  
+  N = 5
+K = 5->4->3->2->1
+Output: 5 4 3 2 1
+  
+     5
+   /  \
+  4    3
+ / \
+2    1
+Now, the level order traversal of
+the above tree is 5 4 3 2 1.
