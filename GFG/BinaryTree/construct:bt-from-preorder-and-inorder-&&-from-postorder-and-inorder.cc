@@ -1,4 +1,4 @@
-Given 2 Arrays of Inorder and preorder traversal. Construct a tree 
+// Given 2 Arrays of Inorder and preorder traversal. Construct a tree 
     
 class Solution{
 unordered_map<int,int>m;
@@ -19,8 +19,7 @@ unordered_map<int,int>m;
         m.clear();
         for(int i=0;i<n;i++) m[in[i]]=i;
         int start=0; 
-        Node* root = build(in,pre,start,0,n-1);
-        return root;
+        return build(in,pre,start,0,n-1);
     }
 };
 Expected Time Complexity: O(N).
@@ -61,3 +60,44 @@ Explanation: The tree will look like
    1       2
  /   \    /
 3    4   5
+
+    
+    
+    Given 2 Arrays of Inorder and postorder traversal. Construct a tree 
+    
+    class Solution{
+        public:
+        unordered_map<int,int>m;
+        Node* build(int in[],int post[],int &end,int inLB,int inUB){
+            if(inLB>inUB) return NULL;
+            Node* root = new Node(post[end--]);
+            if(inLB==inUB) return root;
+
+            int mid = m[root->data];
+            root->right = build(in,post,end,mid+1,inUB);
+            root->left = build(in,post,end,inLB,mid-1);
+
+            return root;
+        }
+        Node *buildTree(int in[], int post[], int n) {
+            m.clear();
+            for(int i=0;i<n;i++) m[in[i]]=i;
+            int end=n-1;
+            return build(in,post,end,0,n-1);
+        }
+    };
+N = 8
+in[] = 4 8 2 5 1 6 3 7
+post[] =8 4 5 2 6 7 3 1
+Output: 1 2 4 8 5 3 6 7
+Explanation: For the given postorder and
+inorder traversal of tree the  resultant
+binary tree will be
+           1
+       /      \
+     2         3
+   /  \      /  \
+  4    5    6    7
+   \
+     8
+        
