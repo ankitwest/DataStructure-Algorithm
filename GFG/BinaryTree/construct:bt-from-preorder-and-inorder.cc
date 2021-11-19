@@ -1,3 +1,5 @@
+Given 2 Arrays of Inorder and preorder traversal. Construct a tree 
+    
 class Solution{
 unordered_map<int,int>m;
     Node* build(int in[],int pre[],int &start,int inS,int inE){
@@ -21,7 +23,7 @@ unordered_map<int,int>m;
         return root;
     }
 };
-
+Expected Time Complexity: O(N).
 // class Solution{
 //     int search(int in[],int inS,int inE,int x){
 //         for(int i=inS;i<=inE;i++){
@@ -47,3 +49,15 @@ unordered_map<int,int>m;
 //         return root;
 //     }
 // };
+//Expected Time Complexity: O(N*N).
+    
+    N = 6
+inorder[] = {3 1 4 0 5 2}
+preorder[] = {0 1 3 4 2 5}
+Output: 3 4 1 5 2 0   (driver)
+Explanation: The tree will look like
+       0
+    /     \
+   1       2
+ /   \    /
+3    4   5
