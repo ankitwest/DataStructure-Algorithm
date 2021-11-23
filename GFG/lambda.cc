@@ -69,6 +69,11 @@ void solve()  {
         auto sol = [](int n){
         return ceil(log2(n));
         };
+ 
+ 
+     auto sum = [&](long long n) -> long long {
+      return (n * n + n) / 2;
+    };
 }
       
 int32_t main(){
