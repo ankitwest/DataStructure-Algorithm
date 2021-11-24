@@ -1,6 +1,7 @@
-// Rotten Tomatoes
+// Rotten Oranges
 class Solution{
   public:
+  //Function to find minimum time required to rot all oranges. 
       int orangesRotting(vector<vector<int>>& grid) {
        queue<pair<int,int>> q;
        int fresh=0;
