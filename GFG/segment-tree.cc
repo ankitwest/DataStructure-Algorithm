@@ -1,7 +1,5 @@
 https://codeforces.com/problemset/problem/339/D
 
-
-
 #include<bits/stdc++.h>
 using namespace::std;
 
@@ -57,7 +55,7 @@ int main(){
 
 
 
-// Maximum of two node
+// Maximum of two node  by striver
 
 #include <bits/stdc++.h>
 using namespace std;
