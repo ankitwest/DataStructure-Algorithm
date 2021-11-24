@@ -2,7 +2,7 @@
 class Solution{
   public:
   //Function to find minimum time required to rot all oranges. 
-      int orangesRotting(vector<vector<int>>& grid) {
+     int orangesRotting(vector<vector<int>>& grid) {
        queue<pair<int,int>> q;
        int fresh=0;
        int n=grid.size(); int m=grid[0].size();
@@ -12,12 +12,13 @@ class Solution{
                else if(grid[i][j]==2) q.push({i,j});
            }
        }
-       int timer=-1;
+       int timer=0;
+       int cnt=0;
        int dx[]={0,0,-1,1};
        int dy[]={1,-1,0,0};
        while(!q.empty()){
            int sz=q.size();
-           timer++;
+           
         for(int i=0;i<sz;i++){
            auto p = q.front();q.pop();
            int x = p.first; int y=p.second;
@@ -26,16 +27,16 @@ class Solution{
                if(new_x>=0 and new_y>=0 and new_x<n and new_y<m and grid[new_x][new_y]==1){
                    grid[new_x][new_y]=2;
                    q.push({new_x,new_y});
-                   fresh--;
+                   cnt++;
                }
            }
          }
-           
+         if(q.empty()) break;
+         timer++;
        }
-       
-       if(fresh>0) return -1;
-       else if(timer==-1) return 0;
-       return timer;
+        
+    if(cnt==fresh) return timer;
+    return -1;
     }
 };
 Expected Time Complexity: O(n*m)
