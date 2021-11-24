@@ -42,7 +42,63 @@ class Solution{
 Expected Time Complexity: O(n*m)
 
   
-  
+	
+	
+	
+	
+  // Covid Spread     time based
+class Infected{
+    public:
+    int row,col,time;
+    Infected(int r,int c,int t){
+        row=r;
+        col=c;
+        time=t;
+    }
+};
+class Solution {
+public:
+    int helpaterp(vector<vector<int>> hospital)
+    {
+       queue<Infected> q; 
+       int uninfected=0;
+        int n=hospital.size(); int m=hospital[0].size();
+       for(int i=0;i<n;i++){
+           for(int j=0;j<m;j++){
+               if(hospital[i][j]==1) uninfected++;
+               else if(hospital[i][j]==2) q.push(Infected(i,j,0));
+           }
+       }
+       int timer =0;
+       int cnt=0; int t=0;
+        int dx[] = {-1, +1, 0, 0};
+        int dy[] = {0, 0, -1, +1};
+       while(!q.empty()){
+           int sz = q.size();
+          for(int i=0;i<sz;i++){
+              auto p = q.front(); q.pop();
+              int x=p.row; int y = p.col;  t = p.time;
+               for(int k=0;k<4;k++){
+                   int new_x=x+dx[k]; int new_y=y+dy[k];
+                   if(new_x>=0 and new_y>=0 and new_x<n and new_y<m and hospital[new_x][new_y]==1){
+                       hospital[new_x][new_y]=2;
+                       q.push(Infected(new_x,new_y,t+1));
+                       cnt++;
+                   }
+               }
+          }
+          if(q.empty()) break;
+          timer++;
+       }
+       
+       if(cnt==uninfected) return timer; // return t;
+       return -1;
+    }
+};
+	
+
+
+
   
   
   // Steps by Knight
