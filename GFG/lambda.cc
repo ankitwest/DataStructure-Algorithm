@@ -74,6 +74,17 @@ void solve()  {
      auto sum = [&](long long n) -> long long {
       return (n * n + n) / 2;
     };
+ 
+ 
+    	auto pro = [](int n) -> int {
+   		int x=1;
+   		while(n>0){
+   			x= x*(n%10);
+   			n/=10;
+   		}
+   		return x;
+   	};
+
 }
       
 int32_t main(){
