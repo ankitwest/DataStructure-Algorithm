@@ -1,3 +1,5 @@
+// check it is wrong
+
 void solve(){
     int n;cin>>n;
     int no = n;
