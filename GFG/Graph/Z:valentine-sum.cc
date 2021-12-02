@@ -31,7 +31,7 @@ class Solution{
     
         if(!t) return 0;
         queue<Node*>q;
-        set<Node*>s;
+        set<Node*>s;    // unordered_map<TreeNode*, bool> vis; 
         q.push(t);
         s.insert(t);
         int level=0; int sum=0;
@@ -44,7 +44,7 @@ class Solution{
                  sum += curr->data;
                  if(curr->left and s.find(curr->left)==s.end()){
                     q.push(curr->left);
-                    s.insert(curr->left);
+                    s.insert(curr->left);  // vis[curr->left] = true;
                  }
                  if(curr->right and s.find(curr->right)==s.end()){
                     q.push(curr->right);
@@ -52,7 +52,7 @@ class Solution{
                  }
                  if(parent[curr] and s.find(parent[curr])==s.end()){
                     q.push(parent[curr]);
-                    s.insert(parent[curr]);
+                    s.insert(parent[curr]);  //vis[parent_track[curr]] = true;
                  }
            }
            level++;
