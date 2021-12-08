@@ -38,3 +38,8 @@ class Solution
         return reverse(head);
     }
 };
+
+LinkedList: 1->2->3
+Output: 124 
+    999
+    1000
