@@ -95,25 +95,21 @@ void removeLoopGfg(Node* head){
         slow=slow->next;
         fast=fast->next->next;
 
-        if(fast==slow) //if cycle found
-            break;
+        if(fast==slow) break;  //if cycle found
     }
-            
-        if(slow!=fast)  //no cycle
-           return;
-       
-       
+    if(slow!=fast) return; //no cycle
+           
     if(slow==head){
         while(fast->next!=slow){
             fast=fast->next;
         }
-    fast->next=NULL;
+        fast->next=NULL;
     }else{
         fast=head;
-    while(slow->next!=fast->next){
-        slow=slow->next;
-        fast=fast->next;
-    }
+        while(slow->next!=fast->next){
+            slow=slow->next;
+            fast=fast->next;
+        }
         slow->next = NULL;
     }
 }
