@@ -17,7 +17,6 @@ public:
         if(n==0) return 0;
         if(n==1) return nums[0];
         if(n==2) return max(nums[0],nums[1]);
-        if(n==3) return max({nums[0],nums[1],nums[2]});
         
         vector<int> v1(nums.begin(),nums.end()-1);
         vector<int> v2(nums.begin()+1,nums.end());
