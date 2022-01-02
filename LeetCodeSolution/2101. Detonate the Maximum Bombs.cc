@@ -10,14 +10,15 @@ public:
         queue<int> q;
         q.push(i);
         vis[i] = true;
-        int ctr=0;
+        int ctr=1;
         while(!q.empty()){
             int curr = q.front();q.pop();
-            ctr++;
+            
             for(auto child:adj[curr]){
                 if(!vis[child]){
                     q.push(child);
                     vis[child]=1;
+                    ctr++;
                 }
             }
         }
