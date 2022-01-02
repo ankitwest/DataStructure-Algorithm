@@ -10,8 +10,8 @@ public:
             while(!st.empty() and arr[st.top()]>=arr[i]){
                 st.pop();
             }
-            if(st.empty()) left[i]=i+1;
-            else left[i]=i-st.top();
+            if(st.empty()) left[i]=0;
+            else left[i]=st.top()+1;   // stopping one element to the right
             st.push(i);
         }
         while(!st.empty()) st.pop();
@@ -19,14 +19,14 @@ public:
             while(!st.empty() and arr[st.top()]>=arr[i]){
                 st.pop();
             }
-            if(st.empty()) right[i]=n-i;
-            else right[i]=st.top()-i;
+            if(st.empty()) right[i]=n-1;
+            else right[i]=st.top()-1;   // stopping one element to the left 
             st.push(i);
         }
          long long max_area=0;
        for(int i=0;i<n;i++){
-           max_area=max(max_area,arr[i]*(right[i]+left[i]-1));
-       }
+           max_area=max(max_area,arr[i]*(right[i]-left[i]+1));   // as we calculate the width
+       }         
        return max_area; 
     }
 };
