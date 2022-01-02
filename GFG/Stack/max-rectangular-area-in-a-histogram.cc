@@ -33,3 +33,25 @@ public:
        return max_area; 
     }
 };
+
+
+
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int>st; int n = heights.size();
+        
+        int h,w; int max_area=0;
+        for(int i=0;i<=n;i++){
+            while(!st.empty() and (i==n or heights[st.top()]>=heights[i])){
+                h = heights[st.top()];
+                st.pop();
+                if(st.empty()) w=i; else w=i-st.top()-1;
+                max_area=max(max_area,h*w);
+            }
+            st.push(i);
+        }
+         return max_area;
+    }
+};
