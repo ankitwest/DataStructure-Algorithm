@@ -1,48 +1,47 @@
-		//Union by rank(height)
-		void Union(int x, int y, int *parent, int *rank)
-		{
-			int s1 = find(x, parent);
-			int s2 = find(y, parent);
-			if (s1 != s2)
-			{
-				if (rank[s1] > rank[s2])
-				{
-					parent[s2] = s1;
-				}
-				else if (rank[s1] < rank[s2])
-				{
-					parent[s1] = s2;
-				}
-				else
-				{
-					parent[s1] = s2;
-					rank[s2]++;
-				}
-			}
-		}
+int maxn = 1e6+5;
 
+int parent[maxn];
+int rank[maxn];
 
-https://www.codechef.com/users/ashwanisri
-void make_set(vll &parent,vll &rank,int v){
-    parent[v]=v;
-    rank[v]=0;
-}
-int find_set(vll &parent,int v){
-    if(v==parent[v]){
-        return v;
+void make_set(){
+    for(int i=1;i<=n;i++){
+        parent[i]=i;
+        rank[i]=0;
     }
-    return parent[v]=find_set(parent,parent[v]);
 }
-void union_sets(vll &parent,vll &rank,int a,int b){
-    a=find_set(parent,a);
-    b=find_set(parent,b);
+
+// 7 -> 6 -> 4 -> 3
+int find_parent(int node){
+    if(node==parent[node])
+        return node;
+
+    return parent[node]=find_parent(parent[node]);
+}
+
+void union(int a,int b){
+    a=find_parent(a);
+    b=find_parent(b);
+
     if(a!=b){
-        if(rank[a]<rank[b]){
-            swap(a,b);
-        }
-        parent[b]=a;
-        if(rank[a]==rank[b]){
-            rank[a]++;
-        }
+        if(rank[a]<rank[b])  swap(a,b);
+        if(rank[a]>rank[b])  parent[b]=a;   
+        if(rank[a]==rank[b]) parent[b]=a , rank[a]++;
+    }
+}
+
+int main(){
+    make_set();
+    int m;cin>>m;
+    while(m--){
+        int a,b;cin>>a>>b;
+        union(a,b);
+    }
+
+    // if 2 and 3 belong to the same component or not
+
+    if(find_parent(2)!=find_parent(3)){
+        cout<<"Different Component";
+    }else {
+        cout<<"Same";
     }
 }
