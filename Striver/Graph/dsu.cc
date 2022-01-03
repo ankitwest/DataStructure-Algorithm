@@ -12,8 +12,7 @@ void make_set(){
 
 // 7 -> 6 -> 4 -> 3
 int find_parent(int node){
-    if(node==parent[node])
-        return node;
+    if(parent[node]==node) return node;
 
     return parent[node]=find_parent(parent[node]);
 }
@@ -45,3 +44,11 @@ int main(){
         cout<<"Same";
     }
 }
+
+
+
+// if we attach two similar guys with same rank then height of tree increases
+
+// Union by rank :- lower rank get attached to higher rank , and if similar rank then rank increases by 1
+
+
