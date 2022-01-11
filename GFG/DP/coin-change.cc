@@ -8,16 +8,18 @@ Explanation: Four Possible ways are:
 
 
 class Solutin{
-  long long int count(int coins[], int n, int amt) {
-        vector<int> dp(amt+1,0);
+    long long int count(int coins[], int n, int amt) {
+    // trying to keep similar to number of coins problem  // dp[0]=1;
+    
+    vector<long long int> dp(amt+1,0);   //int was giving negative answer on big tc;
         dp[0]=1;
         sort(coins,coins+n);
+        
         for(int i=0;i<n;i++){
-            for(int j=1;j<=amt;j++){
-                if(j>=coins[i])
+            for(int j=coins[i];j<=amt;j++){
                 dp[j] += dp[j-coins[i]];
             }
         }
-        return dp[amt];
-    }
+        return dp[amt];    
+    }  
 };
