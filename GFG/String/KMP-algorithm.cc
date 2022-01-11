@@ -13,7 +13,7 @@ class Solution{
    public:
         vector <int> search(string pat, string txt)
         {
-           vector<int> v;
+           vector<int> v;      // a bit change from last one 
            string t = pat + "#" + txt;
            int n = t.size();
            int lps[n];
@@ -22,11 +22,9 @@ class Solution{
            
            while(i<n){
                if(t[i]==t[len]){
-                   while(t[i]==t[len]){
-                       len++;
-                       lps[i] = len;
-                      i++;
-                   }
+                  lps[i] = len+1;
+                  len++;
+                  i++;
                }else{
                   if(len>0)
                     len = lps[len-1];
