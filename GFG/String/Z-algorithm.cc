@@ -16,7 +16,6 @@ present in S.
 
 class Solution{
   public:
-  public:
      void getZarr(string &str,vector<int> &z){
         int L=0,R=0; int n = str.size();
         for(int i=1;i<n;i++){
