@@ -22,7 +22,7 @@ void unionSet(int parent[],int u,int v)
 
 
 
-
+Number of connected components 
 
 
 class Solution
