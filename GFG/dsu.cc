@@ -52,3 +52,24 @@ void union_sets(vll &parent,vll &rank,int a,int b){
 				}
 			}
 		}
+
+
+
+GFG Q
+Disjoint set (Union-Find)
+
+
+int find(int parent[],int node)
+{
+      if(node==parent[node])
+        return node;
+        return parent[node] = find(parent,parent[node]);
+}
+void unionSet(int parent[],int u,int v)
+{
+	u = find(parent,u);
+	v = find(parent,v);
+	
+	if(u==v) return;
+	parent[u] = v;
+}
