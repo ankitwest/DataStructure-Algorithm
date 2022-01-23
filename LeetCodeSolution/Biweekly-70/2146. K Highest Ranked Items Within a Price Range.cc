@@ -49,3 +49,7 @@ public:
         return ans;
     }
 };
+
+
+
+https://leetcode.com/contest/biweekly-contest-70/problems/k-highest-ranked-items-within-a-price-range/
