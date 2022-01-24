@@ -31,6 +31,7 @@ public:
 
 
 M-2
+    
   class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& arr) {
