@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> highestRankedKItems(vector<vector<int>>& grid, vector<int>& pricing, vector<int>& start, int zz) {
+    vector<vector<int>> highestRankedKItems(vector<vector<int>>& grid, vector<int>& pricing, vector<int>& start, int rank) {
         int n = grid.size(); int m = grid[0].size();
  
         int dx[] = {-1,1,0,0};
@@ -13,6 +13,7 @@ public:
         
         vector<array<int,4>> v;
         
+        // special case 
         if(grid[start[0]][start[1]]>=pricing[0] and grid[start[0]][start[1]]<=pricing[1]){
                 v.push_back({0,grid[start[0]][start[1]],start[0],start[1]});
         }
@@ -37,19 +38,20 @@ public:
         }
         sort(v.begin(),v.end());
         vector<vector<int>> ans;
-            
-        
+          
+        // output
+        // for(int i=0;i<v.size();i++){
+        //     cout<<v[i][0]<<" "<<v[i][1]<<" "<<v[i][2]<<" "<<v[i][3]<<endl;
+        // }
         int i=0;
-        for(int i=0;i<v.size() and zz>0;i++){
+        for(int i=0;i<v.size() and rank>0;i++){
             vector<int> z;  
             z.push_back(v[i][2]); z.push_back(v[i][3]);
             ans.push_back(z);
-            zz--;
+            rank--;
         }
         return ans;
     }
 };
-
-
 
 https://leetcode.com/contest/biweekly-contest-70/problems/k-highest-ranked-items-within-a-price-range/
