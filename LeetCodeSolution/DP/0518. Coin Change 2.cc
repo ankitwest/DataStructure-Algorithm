@@ -3,17 +3,18 @@ Return the number of combinations that make up that amount. If that amount of mo
 
 class Solution {
 public:
-    int change(int amount, vector<int>& coins) {
+    int change(int amt, vector<int>& coins) {
         int dp[amount+1];
         memset(dp,0,sizeof(dp));
-        dp[0]=1;
+        dp[0]=1;   // 1 here represent a way to make it (make zero using no coins)
+        
         for(auto coin:coins){
-            for(int val=1;val<=amount;val++){
+            for(int val=1;val<=amt;val++){
                 if(val>=coin) 
                     dp[val]+=dp[val-coin];
             }
         }
-        return dp[amount];
+        return dp[amt];
     }
 };
 
