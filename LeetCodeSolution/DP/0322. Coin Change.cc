@@ -4,17 +4,19 @@ You may assume that you have an infinite number of each kind of coin.
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amt) {
-           int Max = amt + 1;
-        vector<int> dp(amt+1, Max);
-         dp[0]=0;
+       int maxi = amt+1;
+        vector<int> dp(amt+1,maxi);
+        dp[0]=0;  // zero does not require any coin to make 
         
-        for(int val=1;val<=amt;val++){
-         for(auto coin:coins){
-    		if(val >=coin)
-    			dp[val]  = min(dp[val],dp[val-coin]+1);
-           }
-      }
-    return dp[amt] > amt ? -1 : dp[amt];
+	    // coins must be sorted 
+        for(auto coin:coins){
+            for(int j=1;j<=amt;j++){
+                if(j>=coin)
+                    dp[j] = min(dp[j],dp[j-coin]+1);
+            }
+        }
+        
+        return dp[amt]>amt?-1:dp[amt];
     }
 };
 
@@ -22,10 +24,15 @@ Input: coins = [1,2,5], amount = 11
 Output: 3
 Explanation: 11 = 5 + 5 + 1
 
+Input: coins = [2], amount = 3
+Output: -1
+	
+	
+	
     
     
     GFG Solution  
-    bettter and simple one 
+    bettter and simple one   same
     
  class Solution {   
     public:
