@@ -30,3 +30,7 @@ public:
         }
     }
 };
+
+DSU dsu(n);
+
+dsu.UNION(u,v);
