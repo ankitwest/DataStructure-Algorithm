@@ -53,3 +53,10 @@ public:
 };
 
 
+Input: nums = [3,1,3,2,4,3]
+Output: 3
+Explanation:
+One way to make the array alternating is by converting it to [3,1,3,1,3,1].
+The number of operations required in this case is 3.
+It can be proven that it is not possible to make the array alternating in less than 3 operations. 
+
