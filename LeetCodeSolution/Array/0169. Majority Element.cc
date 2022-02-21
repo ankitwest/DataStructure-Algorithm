@@ -3,7 +3,7 @@ public:
     int majorityElement(vector<int>& a) {
         int n = a.size();
         int maj_index = 0; int cnt = 1;
-        for(int i=0;i<n;i++){
+        for(int i=1;i<n;i++){
             if(a[maj_index]==a[i]) cnt++;
             else cnt--;
             
