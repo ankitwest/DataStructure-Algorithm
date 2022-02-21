@@ -1,19 +1,18 @@
 
 class Solution{
   public:
-    int majorityElement(int a[], int size)
+    int majorityElement(int a[], int n)
     {
-        int n = size;
-        int pos = 0,cnt=1;
+        int maj_index = 0,cnt=1;
         for(int i=1;i<n;i++){
-            if(a[i]==a[pos]) cnt++; else cnt--;
-            if(cnt==0) pos = i,cnt=1;
+            if(a[i]==a[maj_index]) cnt++; else cnt--;
+            if(cnt==0) maj_index = i,cnt=1;
         }
         cnt=0;
         for(int i=0;i<n;i++){
-            if(a[i]==a[pos]) cnt++;
+            if(a[i]==a[maj_index]) cnt++;
         }
-        if(cnt>n/2) return a[pos];
+        if(cnt>n/2) return a[maj_index];
         return -1;
     }
   };
@@ -21,7 +20,7 @@ class Solution{
 TC : O(N) from O(N^2)
 
 
-
+Moore Voting Algorithm  
   
   
 Given an array A of N elements. Find the majority element in the array. A majority element in an array A of size N is an element that appears more than N/2 times in the array.
