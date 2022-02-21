@@ -31,6 +31,28 @@ public:
     }
 };
 
+class Solution {
+public:
+    int removeCoveredIntervals(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        sort(intervals.begin(),intervals.end(),[](vector<int> &a,vector<int> &b){
+            if(a[0]==b[0]) return a[1]>b[1];
+            else return a[0]<b[0];
+        });
+        
+        int r = intervals[0][1];
+        int ctr=1;
+        for(int i=1;i<n;i++){
+            if(intervals[i][1]<=r) continue;
+            else {
+                r = intervals[i][1];
+                ctr++;
+            }
+        }
+        return ctr;
+    }
+};
+
 Example 1:
 
 Input: intervals = [[1,4],[3,6],[2,8]]
@@ -40,3 +62,24 @@ Example 2:
 
 Input: intervals = [[1,4],[2,3]]
 Output: 1
+
+    
+    
+    
+class Solution {
+public:
+int removeCoveredIntervals(vector<vector<int>>& intervals) {
+    int n = intervals.size();
+        sort(intervals.begin(),intervals.end());
+        int ctr=1; 
+        int l = intervals[0][0]; int r = intervals[0][1];
+        for(int i=1;i<n;i++){
+            if(intervals[i][0]>l and intervals[i][1]>r){
+                l = intervals[i][0];
+                ctr++;
+            }
+            r = max(r,intervals[i][1]);
+        }
+        return ctr;
+        }
+};
