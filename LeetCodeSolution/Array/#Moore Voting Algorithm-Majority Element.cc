@@ -19,6 +19,29 @@ public:
     }
 };
 
+class Solution {
+public:
+    int majorityElement(vector<int>& a) {
+        int n = a.size();
+          int num = 0; int cnt = 0;
+        for(int i=0;i<n;i++){ 
+            if(num==a[i]) cnt++;
+            else if(cnt==0) num = a[i], cnt=1;
+            else cnt--;
+        }    
+        
+       cnt=0;
+        for(int i=0;i<n;i++){
+            if(num==a[i]) cnt++;
+        }
+        if(cnt>n/2) return num;
+        return -1;
+    }
+};
+
+
+    
+
 Example 1:
 
 Input: nums = [3,2,3]
