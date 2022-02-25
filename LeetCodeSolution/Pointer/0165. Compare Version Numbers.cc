@@ -34,3 +34,18 @@ Example 3:
 Input: version1 = "0.1", version2 = "1.1"
 Output: -1
 Explanation: version1's revision 0 is "0", while version2's revision 0 is "1". 0 < 1, so version1 < version2.
+    
+    
+    
+    
+    class Solution:
+    def compareVersion(self, v1: str, v2: str) -> int:
+        v1 = list(map(int,v1.split('.')))
+        v2 = list(map(int,v2.split('.')))
+        
+        for rev1 ,rev2 in zip_longest(v1,v2,fillvalue = 0):
+            if rev1 == rev2:
+                continue
+            return 1 if rev1 > rev2 else -1
+        
+        return 0
