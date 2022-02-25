@@ -1,5 +1,5 @@
 
-
+M-1
 class Solution {
 public:
       int findDuplicate(vector<int>& nums) {
@@ -21,6 +21,7 @@ public:
   SC -0(N)
    
    
+       
    M-2
 class Solution {
 public:
@@ -63,16 +64,13 @@ public:
     }
 };
 Runtime: 178 ms, 
-
-    
-    
-    
     
   TC- O(N)
   SC -0(1)
 
         
         
+   
         
         
     M - 4 
