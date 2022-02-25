@@ -12,8 +12,9 @@ class Solution
             prev=slow, slow=slow->next, fast=fast->next->next;
             if(slow==fast) break; // Loop found
         }
+         if(fast==NULL or fast->next==NULL) return ; //No Loop
+//         if(slow!=fast) return ; //No Loop
         
-        if(slow!=fast) return ; //No Loop
        fast = head;
        while(slow!=fast){
             prev=slow, slow=slow->next, fast=fast->next;
@@ -24,6 +25,16 @@ class Solution
 
 
 
+
+
+
+
+
+
+can use this for optimizting from 3 pointer to 2 pointer
+
+
+//lengthy
 class Solution
 {
 public:
@@ -38,7 +49,8 @@ public:
 
           if(fast==slow) break;  //if cycle found
       }
-      if(slow!=fast) return; //no cycle
+       if(fast==NULL or fast->next==NULL) return ; //No Loop
+//       if(slow!=fast) return; //no cycle
 
       if(slow==head){
           while(fast->next!=slow){
