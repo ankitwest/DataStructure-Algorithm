@@ -1,5 +1,4 @@
 
-
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& a) {
@@ -7,7 +6,8 @@ public:
         vector<int> v;
         for(int i=0;i<a.size();i++){
             if(a[abs(a[i])-1]<0) v.push_back(abs(a[i]));
-            else x = a[abs(a[i])-1], x*= -1 , a[abs(a[i])-1]=x;
+            // else x = a[abs(a[i])-1], x*= -1 , a[abs(a[i])-1]=x;
+            else a[abs(a[i])-1] *= -1;
         }
         for(int i=0;i<a.size();i++){
             if(a[i]>0) v.push_back(i+1);
