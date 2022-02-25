@@ -70,3 +70,22 @@ Runtime: 178 ms,
     
   TC- O(N)
   SC -0(1)
+
+        
+        
+        
+        
+    M - 4 
+        class Solution {
+public:
+      int findDuplicate(vector<int>& a) {
+         int x=0; 
+        for(int i=0;i<a.size();i++){
+            if(a[abs(a[i])-1]<0) return abs(a[i]);
+            else x = a[abs(a[i])-1], x*= -1 , a[abs(a[i])-1]=x;
+        }
+         return -1;
+    }
+};
+  TC- O(N)
+  SC -0(1)
