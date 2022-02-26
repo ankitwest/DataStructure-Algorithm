@@ -16,3 +16,22 @@ public:
         return "Yes";
     }
   };
+
+Example 1:
+
+Input:
+s1 = #B#A#
+s2 = ##BA#
+Output: Yes
+Explanation: Because we can reach the 
+final state by moving 'B' to the 
+right one step.
+
+Example 2:
+
+Input:
+s1 = #B#A#
+s2 = #A#B# 
+Output: No
+Explanation: Because the robots 
+cannot cross each other.
