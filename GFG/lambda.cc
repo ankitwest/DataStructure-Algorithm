@@ -87,6 +87,29 @@ void solve()  {
 
 }
       
+
+// func
+
+   auto solve = [&](const auto& solve,int i,int j,int mid) -> bool{
+            if(i<0 or j<0 or i>=n or j>=n or vis[i][j] or grid[i][j]>mid) return false;
+            if(i==n-1 and j==n-1) return true;
+            vis[i][j]=true;
+            
+            for(int k=0;k<4;k++){
+                if(solve(solve,i+d[k],j+d[k+1],mid)) return true;
+            }
+            return false;
+        };
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(solve(solve,0,0,mid))
+                ans=mid,high = mid-1;
+            else 
+                low = mid+1;
+            vis.resize(n,vector<bool>(n,false));
+        }
+
+// func
 int32_t main(){
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     freopen("input.txt", "r", stdin);
