@@ -16,7 +16,7 @@ class Solution{
             if(a!=b)
                 ans += mp[a]*mp[b];
             else
-                 ans += mp[a]*(mp[a]-1);
+                 ans += mp[a]*(mp[a]-1)/2*2;   // Permutation
         }
         return ans;
     }
