@@ -1,3 +1,5 @@
+// BFS   -> can also use Dijkstra with Priority Queue
+
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
@@ -28,6 +30,34 @@ public:
         // int mini = *min_element(dist.begin(),dist.end());
         int maxi = *max_element(dist.begin(),dist.end());
         
+        return (maxi==INT_MAX)?-1:maxi;
+    }
+};
+
+
+
+
+
+// Bellman Ford
+
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        vector<int> dist(n,INT_MAX);   
+        k--;
+        dist[k] =0;
+        for(int i=0;i<times.size();i++){
+            --times[i][0];
+            --times[i][1];
+        }
+        for(int i=0;i<n;i++){
+            for(vector<int> e:times){
+                int u=e[0]; int v = e[1]; int wt = e[2];
+                if(dist[u]!=INT_MAX and dist[v]>dist[u]+wt)
+                    dist[v] = dist[u]+wt;
+            }
+        }
+        int maxi = *max_element(dist.begin(),dist.end());
         return (maxi==INT_MAX)?-1:maxi;
     }
 };
