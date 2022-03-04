@@ -34,7 +34,7 @@ public:
     }
 };
 
-
+Time complexity - O(V+E)
 
 
 
@@ -61,3 +61,6 @@ public:
         return (maxi==INT_MAX)?-1:maxi;
     }
 };
+
+
+Time complexity - O(VE)
