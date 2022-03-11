@@ -27,3 +27,22 @@ public:
         
     }
 };
+
+
+M-2
+    
+    class Solution {
+public:
+    int deleteAndEarn(vector<int>& nums){
+        map<int,int> m; //int n = nums.size();
+        for(auto x:nums)
+            m[x] += x;
+        int n = 1e4;
+        vector<int> dp(n+1,0);
+        dp[1] = m[1];
+        for(int i=2;i<=n;i++){
+            dp[i] = max(dp[i-2]+m[i] , dp[i-1]);
+        }
+        return dp[n];
+    }
+};
