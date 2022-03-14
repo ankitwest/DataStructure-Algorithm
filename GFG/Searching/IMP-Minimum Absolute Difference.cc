@@ -15,7 +15,7 @@ int kthDiff(int a[], int n, int k)
             cnt--;  // upper_bound;
             total += cnt;
         }
-        
+        return total>=k;
         // int j=1;
         // int total = 0;
         // for(int i=0;i<n;i++){
@@ -25,12 +25,11 @@ int kthDiff(int a[], int n, int k)
         //     int cnt = j-i;
         //     total += cnt;
         // }
-        
-        return total>=k;
+        // return total>=k;
     };
     int ans=0;
     while(low<=high){
-        int mid = (low+high)>>1;
+        int mid = low + (high-low)/2;
         if(count(mid))  ans = mid,high = mid-1;
         else low = mid+1 ;
     }
