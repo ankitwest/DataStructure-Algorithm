@@ -22,3 +22,16 @@ class Solution{
     }
 };
 Expected Time Complexity: O(|x|)
+    
+    
+    
+Example 1:
+
+Input:
+{([])}
+Output: 
+true
+Explanation: 
+{ ( [ ] ) }. Same colored brackets can form 
+balaced pairs, with 0 number of 
+unbalanced bracket.
