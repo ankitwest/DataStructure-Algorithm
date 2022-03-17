@@ -7,12 +7,12 @@ public:
             if(A[mid] == key)
                 return mid;
             else if(A[l] <= A[mid]){
-                if(key>=A[l] and key<=A[mid])
+                if(A[l]<=key and key<=A[mid])
                     h = mid-1;
                 else
                     l = mid+1;
             }else if(A[mid] <= A[h]){
-                if(key>=A[mid] and key<=A[h])
+                if(A[mid]<=key and key<=A[h])
                     l = mid+1;
                 else 
                     h = mid-1;
