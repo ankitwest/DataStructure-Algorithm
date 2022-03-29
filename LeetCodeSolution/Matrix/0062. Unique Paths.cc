@@ -6,7 +6,7 @@ public:
          auto solve = [&dp](auto solve,int i,int j){
              if(i<0 or j<0)
                  return 0;
-             if(i==0 or j==0)
+             if(i==0 and j==0)
                  return 1;
              if(dp[i][j]!=0)
                  return dp[i][j];
