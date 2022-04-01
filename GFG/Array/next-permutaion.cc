@@ -3,27 +3,29 @@ public:
     vector<int> nextPermutation(int n, vector<int> arr){
         if(n==1) return arr;
         
-        int peakInd = -1;
+        int bottomInd = -1;
         for(int i=n-2;i>=0;i--){
             if(arr[i]<arr[i+1]){ 
-                peakInd = i; break;
+                bottomInd = i; break;
             }
         }
         
-        if(peakInd==-1){  // decreasing order
+        if(bottomInd==-1){  // decreasing order
             reverse(arr.begin(),arr.end());
             return arr;
         }
             
-        int swapInd = peakInd-1;
+        int swapInd = bottomInd-1;
         for(int i=n-1;i>=0;i--){
-            if(arr[i]>arr[peakInd]){
+            if(arr[i]>arr[bottomInd]){
                 swapInd = i;
                 break;
             }
         }  
-        swap(arr[peakInd],arr[swapInd]);
-        sort(arr.begin()+peakInd+1,arr.end());
+        // if we dont find special one then normal one will store swapInd = bottomInd+1
+        // cout<<swapInd<<" "<<bottomInd<<endl;
+        swap(arr[bottomInd],arr[swapInd]);
+        sort(arr.begin()+bottomInd+1,arr.end());
         return arr;
     }
 };
