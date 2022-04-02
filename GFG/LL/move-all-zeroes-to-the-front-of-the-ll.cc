@@ -24,6 +24,9 @@ void moveZeroes(struct Node **head)
 
 
 
+Input:  0 -> 4 -> 0 -> 5 -> 0
+Output: 0 -> 0 -> 0 -> 4 -> 5
+    
 
 // // wrong
 // void moveZeroes(struct Node **head)
