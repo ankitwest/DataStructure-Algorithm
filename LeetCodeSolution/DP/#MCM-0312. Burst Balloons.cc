@@ -11,6 +11,8 @@ public:
         
         vector<vector<int>> dp(n+2,vector<int>(n+2));
         
+             //    1     *   *  2  *    *     3
+            // left-1 left i-1 i i+1 right right+1
         for(int window=1;window<=n;window++){
             for(int left=1;left<=n-window+1;left++){
                 int right = left+window-1;
