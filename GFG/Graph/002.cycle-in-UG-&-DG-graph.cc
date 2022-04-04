@@ -3,7 +3,8 @@
 
 class Solution {
 public:
-    bool dfs(int node,int parent,vector<int> adj[],vector<bool> &vis){
+     // Function to detect cycle in an undirected graph.
+    bool dfs2 (int node,int parent,vector<int> adj[],vector<bool> &vis){
         vis[node]=1;
         for(auto child:adj[node]){
             if(!vis[child]){
@@ -11,6 +12,33 @@ public:
             }else if(vis[child]){
                 if(child==parent) continue;
                 else if(child!=parent) return true;
+            }
+        }
+        return false;
+    }
+    
+    bool dfs (int node,int parent,vector<int> adj[],vector<bool> &vis){
+        vis[node]=1;
+        for(auto child:adj[node]){
+            if(!vis[child]){
+                if(dfs(child,node,adj,vis)) 
+                     return true;
+            } else if(child!=parent) 
+                 return true;
+        }
+        return false;
+    }
+    
+    bool dfs3 (int node,int parent,vector<int> adj[],vector<bool> &vis){
+        vis[node]=1;
+        for(auto neigh: adj[node]){
+            if(neigh==parent)  continue; //YEH TOH BAAP HAI... OH SHIT NOT GOOD
+            
+            if(vis[neigh]){
+                return true;
+            }else if(!vis[neigh]){
+                if(dfs(neigh,node,adj,vis)) 
+                    return true;
             }
         }
         return false;
