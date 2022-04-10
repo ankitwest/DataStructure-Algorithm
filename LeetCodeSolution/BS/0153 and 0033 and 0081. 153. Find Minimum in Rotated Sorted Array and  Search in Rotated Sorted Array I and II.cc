@@ -1,3 +1,37 @@
+
+
+// 153. Find Minimum in Rotated Sorted Array
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int n = nums.size();
+        if(n==1)  // base case for n=1 element
+            return nums[0];
+        if(nums[0]<nums[n-1]) // base case for sorted array
+            return nums[0];
+        
+        int l = 0; int h = n-1; 
+        while(l<=h){
+            int mid = (l+h)/2;
+            if(nums[mid]>nums[mid+1])  //check condition
+                return nums[mid+1];
+            if(nums[l]<=nums[mid])   // found the sorted part , but minimum value lies in other half (right side)
+                l = mid+1;
+            else       // minimum value lies in other half (left side)
+                h = mid-1;
+        }
+        return 0;
+    }
+};
+
+
+
+
+// 33. Search in Rotated Sorted Arra
+
+
+
 class Solution {
 public:
     int search(vector<int>& A, int key) {
