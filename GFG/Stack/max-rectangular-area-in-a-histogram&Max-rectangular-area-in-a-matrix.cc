@@ -60,7 +60,8 @@ public:
 
 
 
-
+// with respect to i ;
+//  confusing
 
 class Solution
 {
