@@ -16,3 +16,12 @@ where low_fats = 'Y' and recyclable = 'Y'
 select name
 from Customer
 where referee_id != 2 or referee_id is null
+
+
+
+
+
+https://leetcode.com/problems/combine-two-tables/
+
+SELECT firstName,lastName,city,state
+FROM Person LEFT JOIN Address ON Person.personId = Address.personId
