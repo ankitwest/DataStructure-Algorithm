@@ -22,6 +22,9 @@ public:
     }
 };
 
+// if(i!=ind&&arr[i]==arr[i-1]) continue;
+
+
 
 
 Example 1:
@@ -32,3 +35,33 @@ Example 2:
 
 Input: nums = [0]
 Output: [[],[0]]
+
+
+
+
+class Solution {
+public:
+    set<vector<int>> s;
+    void helper(int idx,vector<int>& nums,vector<int>& subset){
+        if(idx==nums.size()){
+            s.insert(subset);
+            return ;
+        }
+        // not taking
+        helper(idx+1,nums,subset);
+        
+        //taking
+        subset.push_back(nums[idx]);
+        helper(idx+1,nums,subset);
+        subset.pop_back();
+    }
+     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        vector<int> temp;
+        helper(0,nums,temp);
+         
+         vector<vector<int>> ans(s.begin(),s.end());
+        return ans;
+    }
+};
