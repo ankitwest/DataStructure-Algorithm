@@ -26,3 +26,29 @@ class Solution{
     }
 };
 Expected Time Complexity: O(2N).
+
+  
+  
+  
+  
+class Solution
+{
+    public:
+    vector<vector<int>> ans;
+    void generateSubsets(int idx,vector<int> &arr,int n,vector<int> &temp){
+        ans.push_back(temp); 
+        
+        for(int i=idx;i<n;i++){
+            if(i!=idx and arr[i]==arr[i-1]) continue;
+            temp.push_back(arr[i]);
+            generateSubsets(i+1,arr,n,temp);
+            temp.pop_back();
+        }
+    }
+    vector<vector<int>> AllSubsets(vector<int> arr,int n){
+        sort(arr.begin(),arr.end());
+        vector<int> temp;
+        generateSubsets(0,arr,n,temp);
+        return ans;
+    }
+};
