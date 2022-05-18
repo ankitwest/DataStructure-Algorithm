@@ -5,6 +5,7 @@ class Solution{
         vector<long long> v(n);
       stack<long long>st;
       
+      // immediate
         // next greater <     next smaller >
       for(int i=n-1;i>=0;i--){
           while(!st.empty() and st.top()<arr[i])
@@ -28,6 +29,7 @@ Output:
         vector<long long> next(n);
       stack<long long>st;
       
+   // immediate
       // next greater <     next smaller >
       for(int i=n-1;i>=0;i--){
           while(!st.empty() and st.top()<arr[i])
@@ -40,6 +42,7 @@ Output:
       
       
       vector<long long> prev(n);
+   // immediate
       // previous greater <     previous smaller >
       for(int i=0;i<n;i++){
           while(!st.empty() and st.top()>arr[i])
