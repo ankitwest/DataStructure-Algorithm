@@ -1,7 +1,7 @@
 
 
 
-class Solution2 {
+class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
         int n = nums.size();
@@ -23,9 +23,8 @@ public:
 };
 
 
-// better relatable
-
-class Solution {
+// wrong it gives immediate next smaller element
+class SolutionWrong {
 public:
     bool find132pattern(vector<int>& nums) {
         int n = nums.size();
