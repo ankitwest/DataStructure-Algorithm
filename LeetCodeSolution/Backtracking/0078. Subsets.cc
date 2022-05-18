@@ -1,6 +1,5 @@
 
-
-class Solution {
+class Solution1 {
 public:
     vector<vector<int>> ans;
     void helper(int idx,vector<int>& nums,vector<int>& subset){
@@ -19,7 +18,28 @@ public:
     }
 };
 
- 
+class Solution {
+public:
+    vector<vector<int>> ans;
+    void helper(int idx,vector<int>& nums,vector<int>& subset){
+        if(idx==nums.size()){
+            ans.push_back(subset);
+            return ;
+        }
+            
+        helper(idx+1,nums,subset); 
+        
+        subset.push_back(nums[idx]);
+        helper(idx+1,nums,subset); 
+        subset.pop_back();
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<int> subset;
+        helper(0,nums,subset);
+        return ans;
+    }
+};
 
 Example 1:
 
