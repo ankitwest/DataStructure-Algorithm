@@ -1,4 +1,5 @@
 
+https://practice.geeksforgeeks.org/contest/interview-series-50/problems/#
 
 int minCost(vector<vector<int>> &costs) {
     int n = costs.size(); int k = costs[0].size();
