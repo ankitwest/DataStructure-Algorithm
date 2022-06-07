@@ -1,6 +1,43 @@
 
 https://practice.geeksforgeeks.org/contest/interview-series-50/problems/#
 
+
+// space optimization
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size(); int m = matrix[0].size();
+        
+        for(int i=1;i<n;i++){
+            vector<int> &prev = matrix[i-1];
+            int fmin = INT_MAX; int smin = INT_MAX;
+            int idx=-1;
+            
+            for(int j=0;j<m;j++){
+                if(prev[j]<fmin){
+                    smin = fmin;
+                    fmin = prev[j];
+                    idx = j;
+                }else if(prev[j]<smin){
+                    smin = prev[j];
+                }
+            }
+            
+            for(int j=0;j<m;j++){
+                if(idx==j){
+                    matrix[i][j] += smin;
+                }else{
+                    matrix[i][j] += fmin;
+                }
+            }
+        }
+        
+        return *min_element(matrix[n-1].begin(),matrix[n-1].end());
+    }
+};
+
+
+
 int minCost(vector<vector<int>> &costs) {
     int n = costs.size(); int k = costs[0].size();
     if(n==0) return 0;
