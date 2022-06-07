@@ -21,6 +21,27 @@ class Solution
         flatten(root->right);
     }
 };
+
+class Solution
+{
+    public:
+    void flatten(Node *root)
+    {
+        Node* curr = root;
+        Node* prev = NULL;
+        while(curr){
+            if(curr->left){
+                prev = curr->left;
+                while(prev->right)
+                    prev = prev->right;
+                prev->right = curr->right;
+                curr->right = curr->left;
+                curr->left = NULL;
+            }
+            curr = curr->right;
+        }
+    }
+};
 Input : 
           1
         /   \
@@ -57,7 +78,7 @@ is 1 2 3 4 5 6.
   
   
  
-  //Function to make binary tree from linked list.
+  //Ffrom  linked list  to  binary tree 
   void convert(Node *head, TreeNode *&root) {
     queue<TreeNode*>q;
     root = new TreeNode(head->data);
