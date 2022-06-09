@@ -4,7 +4,7 @@ class Solution
     public:
     void flatten(Node *root)
     {
-        if(!root or !root->left and !root->right)
+        if(!root or (!root->left and !root->right))
             return ;
         if(root->left){
             flatten(root->left);
