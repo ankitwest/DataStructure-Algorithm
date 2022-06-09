@@ -1,33 +1,30 @@
-
-
 class Solution {
 public:
     int splitArray(vector<int>& nums, int m) {
-        int low = *max_element(nums.begin(),nums.end());
-        int high = accumulate(nums.begin(),nums.end(),0);
+        int low = *max_element(nums.begin(),nums.end()); int sum = 0;
+        int high = sum = accumulate(nums.begin(),nums.end(),0);  
         int n = nums.size();
         
-        auto check = [&](int maxi){
+        auto check = [&](int maxSum){
             int sum=0; int cnt=1; int k=m-1;
             for(auto num:nums){
                 sum += num;
-                if(sum>maxi) sum=num,k--,cnt++;
+                if(sum>maxSum) sum=num,k--,cnt++;
             }
-            return cnt<=m;
+            return cnt;
         };
         
         int ans=0;
         while(low<=high){
             int mid = (low + high)/2;
-            if(check(mid)) 
-                high = mid-1,ans = mid;
+            if(check(mid)<=m) 
+                ans = mid,high = mid-1;
             else 
                 low = mid+1;
         }
        return ans;
     }
 };
-
 
 Input: nums = [7,2,5,10,8], m = 2
 Output: 18
