@@ -6,12 +6,12 @@ public:
         int n = nums.size();
         
         auto check = [&](int maxSum){
-            int sum=0; int cnt=1; int k=m-1;
+            int sum=0; int splits=1; int k=m-1;
             for(auto num:nums){
                 sum += num;
-                if(sum>maxSum) sum=num,k--,cnt++;
+                if(sum>maxSum) sum=num,k--,splits++;
             }
-            return cnt;
+            return splits;
         };
         
         int ans=0;
