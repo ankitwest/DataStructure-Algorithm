@@ -12,6 +12,39 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+class Solution {
+public:
+    string solve(TreeNode* root,int &ans){
+        if(!root)
+            return "no_need_camera";
+        
+        string l = solve(root->left,ans);
+        string r = solve(root->right,ans);
+        
+        if(l=="plz_cover_me" or r=="plz_cover_me"){
+            ans++;
+            return "has_camera";
+        }
+        else if(l=="has_camera" or r=="has_camera"){
+            return "no_need_camera";
+        }
+        
+        return "plz_cover_me";
+    }
+    int minCameraCover(TreeNode* root) {
+        int ans = 0;
+        if(solve(root,ans)=="plz_cover_me"){
+            ans++;
+        }
+        return ans;
+    }
+};
+
+
+
+
+
 class Solution {
 public:
     // -1 need cover  
