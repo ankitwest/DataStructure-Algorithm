@@ -1,11 +1,9 @@
-
-
 from pickle import NONE
  
 
 
 class Patient:
-    def init(self, Code, Name, age, doctorName, billAmount):
+    def __init__(self, Code, Name, age, doctorName, billAmount):   //parameterized constructor
         self.Code = Code
         self.Name = Name
         self.age = age
@@ -16,7 +14,7 @@ class Patient:
 class Doctor:
     Doctor = "UD"
 
-    def init(self, PatientList):
+    def __init__(self, PatientList):
         # self.Doctor = Doctor
         self.PatientList = PatientList
 
@@ -49,22 +47,16 @@ for i in range(n):
     for i in range(5):
         x = input()
         arr.append(x)
-    obj = Patient()
-    obj.Code = arr[0]
-    obj.age = arr[1]
-    obj.Name = arr[2]
-    obj.doctorName = arr[3]
-    obj.billAmount = arr[4]
+    obj = Patient(arr[0],arr[1],arr[2],arr[3],arr[4])
     inp.append(arr)
-obj1 = Doctor()
-obj1.PatientList = inp
+    
+obj1 = Doctor(inp)
 val = obj1.findPatientWithMaximumAge()
 val2 = obj1.sortPatientByBillAmount()
 for val in val:
     print(val)
 for i in val2:
     print(i)
-    
     
     
     
