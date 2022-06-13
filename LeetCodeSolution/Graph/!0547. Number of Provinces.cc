@@ -32,6 +32,42 @@ public:
         return groups;
     }
 };
+// with auto fxn
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConn) {
+        int n = isConn.size();int m=isConn[0].size();
+        vector<int> adj[n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i==j) continue;
+                if(isConn[i][j]==1) adj[i].push_back(j);
+            }
+        }
+        
+        bool vis[n];
+        memset(vis,false,sizeof(vis));
+        
+        auto dfs = [&](const auto& dfs,int node,int par)-> void{
+            vis[node] = true;
+            for(auto child:adj[node]){
+                if(child==par) continue;
+                if(!vis[child])
+                    dfs(dfs,child,node);
+            }
+        };
+        
+        int province = 0;
+        for(int i=0;i<n;i++){
+            if(!vis[i]){
+                province++;
+                dfs(dfs,i,-1);
+            }
+        }
+        return province;
+    }
+};
+
 
 
 Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
