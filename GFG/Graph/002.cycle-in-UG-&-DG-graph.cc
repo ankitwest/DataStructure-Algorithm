@@ -68,7 +68,7 @@ public:
         vis[node]=1;
         anc[node]=1;
         for(auto child:adj[node]){
-            // if(child==parent) continue;  // dont remove this one in directed graph
+            // if(child==parent) continue;  // remove this one in directed graph
             if(!vis[child]){
                 if(dfs(child,node,adj,vis,anc)) return true;
             }else if(anc[child]==1) return true;
