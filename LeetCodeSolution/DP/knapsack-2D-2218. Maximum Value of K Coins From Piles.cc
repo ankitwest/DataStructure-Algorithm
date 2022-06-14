@@ -15,7 +15,8 @@ public:
         for(int i=0;i<piles[index].size();i++){
             // or take certain prefix from that pile as much we can take
             sum += piles[index][i];
-            if(k-(i+1)>=0) maxi = max( maxi , sum + solve(index+1,piles,k-(i+1)));
+            if(k-(i+1)>=0) 
+                maxi = max( maxi , sum + solve(index+1,piles,k-(i+1)));
         }
         return dp[index][k] = maxi;
     }
