@@ -163,3 +163,29 @@ public:  // topological sorting  //bfs  //kahn' algo
 [0,1,2,3]
 [0]
 []
+
+
+
+0630. Course Schedule III
+
+class Solution {
+public:
+    int scheduleCourse(vector<vector<int>>& courses) {
+        sort(courses.begin(),courses.end(),[&](auto &a, auto &b){
+            return a[1] < b[1];
+        });
+        priority_queue<int> pq;
+        
+        int time = 0;
+        for(auto c : courses){
+            int dur = c[0]; int end = c[1];
+            pq.push(dur);
+            time += dur;
+            if(time > end){
+                time -= pq.top();
+                pq.pop();
+            }
+        }
+        return pq.size();
+    }
+};
