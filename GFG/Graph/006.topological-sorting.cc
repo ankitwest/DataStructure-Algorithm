@@ -1,29 +1,29 @@
 class Solution{
 public:
-	stack<int>st;
-	void findTopoSort(int node,vector<int> adj[],bool vis[]){
+	
+	void findTopoSort(int node,vector<int> adj[],bool vis[],stack<int> &st){
 	    vis[node]=1;
 	    for(auto neigh:adj[node]){
 	        if(!vis[neigh])
-	            findTopoSort(neigh,adj,vis);
+	            findTopoSort(neigh,adj,vis,st);
 	    }
 	    st.push(node);
 	} 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
-	   
+	   stack<int>st;
 	   bool vis[V];memset(vis,0,sizeof(vis));
 	   for(int i=0;i<V;i++){
 	       if(!vis[i])
-	        findTopoSort(i,adj,vis);
+	        findTopoSort(i,adj,vis,st);
 	   }
 		
-	   vector<int> res;
+	   vector<int> toposort;
 	   while(!st.empty()){
 	       int x = st.top();st.pop();
-	       res.push_back(x);
+	       toposort.push_back(x);
 	   }
-	   return res;
+	   return toposort;
 	}
 };
 
