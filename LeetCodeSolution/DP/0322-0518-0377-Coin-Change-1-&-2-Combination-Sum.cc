@@ -1,3 +1,11 @@
+// coin change is of 3 type
+// minimum to make that amt
+// combination
+// permutation
+
+
+
+// 0322. Coin Change
 // Return the fewest number of coins that you need to make up that amount.
 // Min no of coins required to form the coin
 class Solution {
@@ -20,11 +28,11 @@ public:
 };
 
 
-
+// 0518. Coin Change 2
 // Return the number of combinations that make up that amount. 
 
 class Solution {
-public:
+public:    //combination
     int change(int amt, vector<int>& coins) {
         int dp[amount+1];
         memset(dp,0,sizeof(dp));
@@ -41,6 +49,7 @@ public:
 };
 
 
+// 0377. Combination Sum IV
 // Return the number of permuatations that make up that amount. 
 
 class Solution {
