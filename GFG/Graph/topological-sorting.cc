@@ -1,7 +1,6 @@
 class Solution{
 public:
 	stack<int>st;
-	vector<int> res;
 	void findTopoSort(int node,vector<int> adj[],bool vis[]){
 	    vis[node]=1;
 	    for(auto neigh:adj[node]){
@@ -18,7 +17,8 @@ public:
 	       if(!vis[i])
 	        findTopoSort(i,adj,vis);
 	   }
-	   
+		
+	   vector<int> res;
 	   while(!st.empty()){
 	       int x = st.top();st.pop();
 	       res.push_back(x);
