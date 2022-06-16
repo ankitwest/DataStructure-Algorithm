@@ -1,3 +1,11 @@
+Input: s = "ABC"
+Output: 10
+Explanation: All possible substrings are: "A","B","C","AB","BC" and "ABC".
+Every substring is composed with only unique letters.
+Sum of lengths of all substring is 1 + 1 + 1 + 2 + 2 + 3 = 10
+    
+    
+
 class Solution {
 public:
     int uniqueLetterString(string s) {
