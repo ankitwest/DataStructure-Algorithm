@@ -16,8 +16,9 @@ public:
         dp[0]=0;  // zero does not require any coin to make 
         
 	    // coins must be sorted 
-        for(auto coin:coins){
-            for(int j=1;j<=amt;j++){
+	    // better for each amt we run all possible coin
+	for(int j=1;j<=amt;j++){	    
+            for(auto coin:coins){
                 if(j>=coin)
                     dp[j] = min(dp[j],dp[j-coin]+1);
             }
