@@ -6,6 +6,8 @@ Explanation: Four Possible ways are:
 {1,1,1,1},{1,1,2},{2,2},{1,3}.
 
 
+// QA coin change	
+// combination	
 
 class Solutin{
     long long int count(int coins[], int n, int amt) {
@@ -25,8 +27,8 @@ class Solutin{
 };
 
 
-
-Q find min no of coins to make up target
+//QA min coin
+// find min no of coins to make up target
 
 
  class Solution {   
@@ -45,6 +47,58 @@ Q find min no of coins to make up target
 	           dp[j] = min(dp[j],1+dp[j-coins[i]]);
 	       }
 	   }
+// both one
+//         for(int j=1;j<=amt;j++){
+//             for(auto coin:coins){
+// 	        if(coin<=j)
+// 	          dp[j] = min(dp[j],dp[j-coin]+1);
+// 	    }
+// 	}
 	   return dp[amt]>amt?-1:dp[amt];
 	} 
 };
+
+
+
+
+//QA Another coin change problem
+// make up target from infinite coins but only k coins
+
+class Solution{
+public:
+  vector<vector<int>> dp;
+  int solve(int n,int k,int target,vector<int> &coins){
+    if(k==0 and target==0)
+        return 1;
+    
+    if(k<=0 or target<=0)
+        return 0;
+        
+    if(dp[k][target]!=-1)
+        return dp[k][target];
+        
+    bool ans = 0;
+    for(int i=0;i<n;i++){
+        ans = ans | solve(n,k-1,target-coins[i],coins);
+    }
+    return dp[k][target] = ans;
+  }
+  
+    bool makeChanges(int n, int k, int target, vector<int> &coins) {
+        dp.resize(k+1,vector<int> (target+1,-1));
+       return solve(n,k,target,coins);
+    }
+};
+
+
+Input:
+n = 5, k = 3, target = 11
+coins = {1, 10, 5, 8, 6}
+Output: 
+1
+
+Explanation: 
+2 coins of 5 and 1 coins of 1 can be used 
+to make change of 11 i.e. 11 => 5+5+1.
+
+	
