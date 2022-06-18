@@ -41,25 +41,25 @@ Note that you are allowed to reuse a dictionary word.
   
   
   
-// class Solution2 {
-// public:   // TC -  O(N^3)
-//     bool wordBreak(string s, vector<string>& wordDict) {
-//         int len = s.size();
-//         bool dp[len+1];
-//         memset(dp,false,sizeof(dp));
-//         dp[0] = true;
+class Solution2 {
+public:   // TC -  O(N^3)
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int len = s.size();
+        bool dp[len+1];
+        memset(dp,false,sizeof(dp));
+        dp[0] = true;
         
-//         for(int i=1;i<=len;i++){
-//             for(int j=1;j<=i;j++){
-//                 int start = i-j; int len = j;
-//                 string str = s.substr(start,len);
-//                 if(find(wordDict.begin(),wordDict.end(),str) != wordDict.end() and dp[start])
-//                 {
-//                     dp[i] = true; 
-//                 }
-//             }
-//         }
-//         return dp[len];
-//     }
-// };
+        for(int i=1;i<=len;i++){
+            for(int j=1;j<=i;j++){
+                int start = i-j; int len = j;
+                string str = s.substr(start,len);
+                if(find(wordDict.begin(),wordDict.end(),str) != wordDict.end() and dp[start])
+                {
+                    dp[i] = true; 
+                }
+            }
+        }
+        return dp[len];
+    }
+};
 
