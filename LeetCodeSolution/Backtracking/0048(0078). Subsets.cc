@@ -1,13 +1,12 @@
-
-class Solution1 {
+class Solution {
 public:
     vector<vector<int>> ans;
     void helper(int idx,vector<int>& nums,vector<int>& subset){
-        ans.push_back(subset);
+        ans.push_back(subset); // try generating of every size = 0,1,2,3...
            
         for(int i=idx;i<nums.size();i++){
             subset.push_back(nums[i]);
-            helper(i+1,nums,subset); // from where to start next one
+            helper(i+1,nums,subset);  // size+1
             subset.pop_back();
         }
     }
@@ -17,6 +16,13 @@ public:
         return ans;
     }
 };
+
+
+
+
+
+
+
 
 class Solution {
 public:
