@@ -68,23 +68,28 @@ public:
 
 // M-2
 
+//tanya
 class Solution {
 public:
-    // here back swap because we are making changes in the given array everytime we are calling helper function ;and we need to come back to zero;
     vector<vector<int>> ans;
-    void helper(int idx,vector<int> &nums,int n){
-        if(idx==n)
-            ans.push_back(nums);
+    void helper(int idx,vector<int> &temp,vector<int> &nums,int n){
+        if(idx==n){
+            ans.push_back(temp);
+            return;
+        }
         
-        for(int i=idx;i<n;i++){
-            temp.push_back(nums[i]);
-            helper(idx+1,nums,n);
-            temp.pop_back();
+        for(int i=0;i<n;i++){
+            if(find(temp.begin(),temp.end(),nums[i]) == temp.end()){
+                temp.push_back(nums[i]);
+                helper(idx+1,temp,nums,n);
+                temp.pop_back();
+            }
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
         int n = nums.size();
-        helper(0,nums,n);
+        vector<int> temp;
+        helper(0,temp,nums,n);
         return ans;
     }
 };
