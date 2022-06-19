@@ -13,15 +13,15 @@ public:
             return;
         }
         
-        matrix[i][j] = 2;
         
         for(int k=0;k<4;k++){
             int a = i+dx[k];int b = j+dy[k];
             if(isValid(matrix,a,b)){
-                dfs(matrix,a,b,xe,ye,ans+1);    
+                matrix[i][j] = 2;
+                dfs(matrix,a,b,xe,ye,ans+1); 
+                 matrix[i][j] = 1;
             }
         }
-        matrix[i][j] = 1;
     }
     int longestPath(vector<vector<int>> matrix, int xs, int ys, int xe, int ye)
     {
@@ -30,6 +30,7 @@ public:
             return -1;
             
         int ans = 0;
+        matrix[xs][ys] = 2;
         dfs(matrix,xs,ys,xe,ye,ans);
         return maxi;
     }
