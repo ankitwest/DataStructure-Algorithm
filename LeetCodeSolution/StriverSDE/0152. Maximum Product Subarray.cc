@@ -1,3 +1,5 @@
+//similar to kadane algo 
+// or max subarray sum
 class Solution1 {
 public:
     int maxProduct(vector<int>& nums) {
@@ -6,7 +8,9 @@ public:
         for(int i=0;i<n;i++){
             l*=nums[i];
             r*=nums[n-1-i];
-            ans = max(ans,max(l,r));
+            ans = max(ans,l);
+            ans = max(ans,r);
+//             ans = max(ans,max(l,r));
             if(l==0) l=1;
             if(r==0) r=1;
         }
