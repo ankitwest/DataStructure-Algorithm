@@ -1,4 +1,11 @@
 class Solution {
+    void reverseFun(vector<int> &nums,int i,int j){
+        while(i<=j){
+            swap(nums[i],nums[j]);
+            i++,j--;
+        }
+        return;
+    }
 public:
     void nextPermutation(vector<int>& nums) {
         int n = nums.size();
@@ -9,6 +16,7 @@ public:
             }
         }
         if(peakInd == -1){
+            // reverseFun(nums,0,n-1);
             reverse(nums.begin(),nums.end());
             return ;
         }
@@ -21,6 +29,8 @@ public:
         }
         
         swap(nums[swapInd],nums[peakInd]);
-        sort(nums.begin()+peakInd+1,nums.end());
+        // reverseFun(nums,peakInd+1,n-1);
+        reverse(nums.begin()+peakInd+1,nums.end());
+        
     }
 };
