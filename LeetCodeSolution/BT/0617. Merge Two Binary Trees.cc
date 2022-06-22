@@ -9,6 +9,39 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* a, TreeNode* b) {
+        if (!a && !b) return nullptr;
+        
+        TreeNode* root = new TreeNode((a ? a->val : 0 ) + (b ? b->val : 0));
+        
+        root->left = mergeTrees(a ? a->left : NULL , b ? b->left : NULL);
+        root->right = mergeTrees(a ? a->right : NULL , b ? b->right : NULL);
+        return root;
+    }
+};
+
+
+class Solution {
+public:
+ TreeNode* mergeTrees(TreeNode* a, TreeNode* b) {
+         if(!a) return b;
+         
+         if(a and b){
+             a->val += b->val;
+             a->left = mergeTrees(a->left,b->left);
+             a->right = mergeTrees(a->right,b->right);
+         }
+         return a;
+     }
+};
+
+
+
+
+
 class Solution {
 public:
     TreeNode* merge(TreeNode* &root,TreeNode* a,TreeNode* b){
@@ -34,18 +67,4 @@ public:
         return merge(root,root1,root2);
     }
     
-};
-
-class Solution {
-public:
- TreeNode* mergeTrees(TreeNode* a, TreeNode* b) {
-         if(!a) return b;
-         
-         if(a and b){
-             a->val += b->val;
-             a->left = mergeTrees(a->left,b->left);
-             a->right = mergeTrees(a->right,b->right);
-         }
-         return a;
-     }
 };
