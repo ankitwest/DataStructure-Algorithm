@@ -27,6 +27,7 @@ class Solution2 {
 public:
     TreeNode* invertTree(TreeNode* root) {
         if(!root) return NULL;
+        
         TreeNode* left = root->left;
         TreeNode* right = root->right;
         
@@ -36,18 +37,16 @@ public:
     }
 };
 
-class Solution1 {
-public:
-    void invert(TreeNode* &root){
-        if(!root) return ;
 
-        invert(root->left);
-        invert(root->right);
-        swap(root->left,root->right);
-    }
+class Solution {
+public:
     TreeNode* invertTree(TreeNode* root) {
-        if(!root) return NULL;
-        invert(root);
-        return root;
+      if(!root) return NULL;
+      
+      invertTree(root->left);
+      invertTree(root->right);
+      swap(root->left, root->right);
+      
+      return root;
     }
 };
