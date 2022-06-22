@@ -1,3 +1,58 @@
+Inorder Successor in BST
+class Solution{
+  public:
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        Node* succ = NULL;
+        while(root){
+            if(root->data <= x->data){
+                root = root->right;
+            }else{
+                succ = root;
+                root = root->left;
+            }
+        }
+        return succ;
+    }
+};
+
+TC - O(H)
+SC - O(1)
+
+  
+  void findPreSuc(Node* root, Node*& pre, Node*& succ, int x)
+{
+    Node* curr = root;
+    while(root){
+        if(root->key <= x){
+            root = root->right;
+        }else{
+            succ = root;
+            root = root->left;
+        }
+    }
+    root = curr;
+    while(root){
+        if(root->key >= x){
+            root = root->left;
+        }else{
+            pre = root;
+            root = root->right;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+Recursion 
+TC - O(N)
+  SC - stack
 class Solution{
   public:
   Node* inpre(Node* root){
