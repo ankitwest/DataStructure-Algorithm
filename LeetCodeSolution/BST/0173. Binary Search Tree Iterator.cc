@@ -3,22 +3,23 @@ public:
     stack<TreeNode*> st;
     
     BSTIterator(TreeNode* root) {
-        partialInorder(root);
+        leftInorder(root);
     }
     int next() {
         TreeNode* top = st.top();
         st.pop();
-        partialInorder(top->right);
+        leftInorder(top->right);
         return top->val;
     }
     bool hasNext() {
         return !st.empty();
     }
 private:
-    void partialInorder(TreeNode* root){
+    void leftInorder(TreeNode* root){
         while(root){
             st.push(root);
             root=root->left;
         }
     }
 };
+
