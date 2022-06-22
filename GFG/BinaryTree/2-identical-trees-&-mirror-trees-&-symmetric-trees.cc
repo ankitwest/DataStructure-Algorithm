@@ -1,4 +1,47 @@
 
+
+
+// Invert a tree
+// Q	// Function to convert a binary tree into its mirror tree.
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(!root) return NULL;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            auto curr = q.front(); q.pop();
+            auto left = curr->left;
+            auto right = curr->right;
+            curr->left = right;
+            curr->right = left;
+            
+            if(curr->left)
+                q.push(curr->left);
+            if(curr->right)
+                q.push(curr->right);
+        }
+        return root;
+    }
+};
+
+class Solution2 {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(!root) return NULL;
+        
+        TreeNode* left = root->left;
+        TreeNode* right = root->right;
+        
+        root->left = invertTree(right);
+        root->right = invertTree(left);
+        return root;
+    }
+};
+
+
+
 // Identical Trees   
 	// Function to check if two trees are identical.
 class Solution
@@ -15,7 +58,7 @@ class Solution
     }
 };
 
-// Check for Subtree
+// Q     // Check for Subtree
 class Solution
 {
   public:
@@ -51,21 +94,13 @@ T:      1          S:   3
 Output: 1 
 
 
-// Invert a tree
-	// Function to convert a binary tree into its mirror tree.
-class Solution {
-  public:
-    void invert(Node* root) 
-    {
-        if(!root) return ;
-	    
-        invert(root->left);
-        invert(root->right);
-        swap(root->left,root->right);
-    }
-};
+	
+	
+	
+	
+// Mirror of tree
+// Q	//Check if two trees are mirror of each other
 
-	//Check if two trees are mirror of each other
     bool mirror(Node* root1,Node* root2){
         if(!root1 and !root2) return true;
         if(!root1 or !root2) return false;
@@ -78,7 +113,7 @@ class Solution {
 
 
 // Symmetric Tree
-	 // return true/false denoting whether the tree is Symmetric or not
+// Q	 // return true/false denoting whether the tree is Symmetric or not
 class Solution{
     public:
      bool mirror(Node* root1,Node* root2){
@@ -88,12 +123,8 @@ class Solution{
         
         return mirror(root1->left,root2->right) and mirror(root1->right,root2->left);
     }
-    bool isSymmetric(struct Node* root)
-    {
-	    if(!root) return true;
-        
-        bool ans = mirror(root->left,root->right);
-        return ans;
- 
+    bool isSymmetric(struct Node* root){
+	if(!root) return true;
+        return mirror(root->left,root->right);
     }
 };
