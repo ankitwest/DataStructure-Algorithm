@@ -98,7 +98,23 @@ Output: 1
 	
 	
 	
-// Mirror of tree
+// Q  // Mirror of tree
+	
+class Solution {
+public:  
+// Function to convert a binary tree into its mirror tree.
+    void mirror(Node* root) {
+        if(!root) return;
+        
+        Node* r = root->right;
+        Node* l = root->left;
+        root->left = r;
+        root->right = l;
+        
+        mirror(root->left);
+        mirror(root->right);
+    }
+};
 // Q	//Check if two trees are mirror of each other
 
     bool mirror(Node* root1,Node* root2){
