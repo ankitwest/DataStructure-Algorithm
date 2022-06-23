@@ -22,6 +22,26 @@ public:
     }
 };
 
+reason
+
+         5   5                           5
+        / \ / \                         / \
+       4   4   4                       4  -∞
+      /         \                     /
+     3           3           3       3
+    /             \         / \     /
+   2               2       2   2   2
+  /                 \     /     \ /
+-∞                   1   1       1
+                      \ /
+                       0      
+
+Case 1 : mid lies on the right of our result peak ( Observation : Our peak element search space is leftside )
+Case 2 : mid is equal to the peak element ( Observation : mid element is greater than its neighbors )
+Case 3 : mid lies on the left. ( Observation : Our peak element search space is rightside )
+    
+    
+    
 Input: nums = [1,2,1,3,5,6,4]
 Output: 5
 Explanation: Your function can return either index number 1 where the peak element is 2, or index number 5 where the peak element is 6.
