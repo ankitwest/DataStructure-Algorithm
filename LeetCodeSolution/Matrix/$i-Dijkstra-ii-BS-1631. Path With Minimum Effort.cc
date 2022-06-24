@@ -5,23 +5,24 @@ public:
         vector<vector<int>> effort(n,vector<int>(m,INT_MAX));
         
         queue<pair<int,int>> q;
-        q.push({0,0,});
+        q.push({0,0});
         int d[5] = {-1,0,1,0,-1};
         effort[0][0] = 0;
         
         while(!q.empty()){
-            auto curr = q.front(); q.pop();
-            int x = curr.first; int y = curr.second;
+            auto [x,y] = q.front(); q.pop();
             
             for(int k=0;k<4;k++){
-                int new_x = x + d[k]; int new_y = y + d[k+1];
+                int a = x + d[k]; int b = y + d[k+1];
                 
-                if(new_x<0 or new_y<0 or new_x>=n or new_y>=m) continue;
-                if(effort[new_x][new_y]<=effort[x][y]) continue;
+                // if(a<0 or b<0 or a>=n or b>=m) continue;
+                // if(effort[a][b]<=effort[x][y]) continue;
                 
-                int p = max(effort[x][y],abs(heights[new_x][new_y]-heights[x][y]));
-                effort[new_x][new_y] = min(effort[new_x][new_y],p);
-                q.push({new_x,new_y});
+                if(a>=0 and b>=0 and a<n and b<m and effort[a][b] > effort[x][y]) {
+                    int p = max(effort[x][y],abs(heights[a][b]-heights[x][y]));
+                    effort[a][b] = min(effort[a][b],p);
+                    q.push({a,b});
+                }
              }
         }
         return effort[n-1][m-1];
@@ -36,7 +37,7 @@ This is better than the route of [1,2,2,2,5], where the maximum absolute differe
     
     
     
-// M-2 
+// M-2  //BS
 class Solution {
 public:
     int d[5] = {-1,0,1,0,-1};
