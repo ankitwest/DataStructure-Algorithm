@@ -1,6 +1,6 @@
 // BFS   -> can also use Dijkstra with Priority Queue
 
-class Solution {
+class Solution1 {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
         vector<pair<int,int>> adj[n];
@@ -17,26 +17,26 @@ public:
         q.push({k,dist[k]}); 
         
         while(!q.empty()){
-            auto curr = q.front(); q.pop();
-            for(auto child : adj[curr.first]){
-                int node = child.first;
-                int wt = child.second;
-                if(dist[curr.first]+wt<dist[node]){
-                    dist[node] = dist[curr.first]+wt;
-                    q.push({node,dist[node]});
+            auto [u, curr_dist] = q.front(); q.pop();
+            if(dist[u] < curr_dist) continue;
+            
+            for(auto child : adj[u]){
+                auto [v,wt] = child;
+
+                if(dist[u]+wt < dist[v]){
+                    dist[v] = dist[u]+wt;
+                    q.push({v,dist[v]});
                 }
             }
         }
-        // int mini = *min_element(dist.begin(),dist.end());
         int maxi = *max_element(dist.begin(),dist.end());
-        
         return (maxi==INT_MAX)?-1:maxi;
     }
 };
-
 Time complexity - O(V+E)
 
-        // dijkstra
+        // dijkstra  
+    Time complexity - O(E*logV)
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
@@ -70,7 +70,39 @@ public:
 
 
 
-
+//set
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        vector<pair<int,int>> adj[n];
+        for(int i=0;i<times.size();i++){
+            int a = --times[i][0];
+            int b = --times[i][1];
+            int wt = times[i][2];
+            adj[a].push_back({b,wt});
+        }
+        set<pair<int,int>> s;
+        vector<int> dist(n,INT_MAX); 
+        k--;
+        dist[k] = 0;
+        s.insert({k,dist[k]}); 
+        
+        while(s.size()){
+            auto [u,curr_dist] = *s.begin(); s.erase(s.begin());
+            if(dist[u] < curr_dist) continue;
+            
+            for(auto child : adj[u]){
+                auto [v,wt] = child;
+                if(dist[u] + wt < dist[v]){
+                    dist[v] = dist[u]+wt;
+                    s.insert({v,dist[v]});
+                }
+            }
+        }
+        int maxi = *max_element(dist.begin(),dist.end());
+        return (maxi==INT_MAX)?-1:maxi;
+    }
+};
 
 // Bellman Ford
 
