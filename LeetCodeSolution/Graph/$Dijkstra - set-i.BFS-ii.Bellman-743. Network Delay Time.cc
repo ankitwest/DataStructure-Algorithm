@@ -14,23 +14,23 @@ public:
         vector<int> dist(n,INT_MAX); 
         k--;
         dist[k] = 0;
-        q.push({k,dist[k]}); 
+        q.push({dist[k],k}); 
         
         while(!q.empty()){
-            auto [u, curr_dist] = q.front(); q.pop();
-            if(dist[u] < curr_dist) continue;
+            auto [curr_dist,u] = q.front(); q.pop();
+            // if(dist[u] < curr_dist) continue;
             
             for(auto child : adj[u]){
                 auto [v,wt] = child;
 
-                if(dist[u]+wt < dist[v]){
+                if(dist[u] + wt < dist[v]){
                     dist[v] = dist[u]+wt;
-                    q.push({v,dist[v]});
+                    q.push({dist[v],v});
                 }
             }
         }
         int maxi = *max_element(dist.begin(),dist.end());
-        return (maxi==INT_MAX)?-1:maxi;
+        return (maxi==INT_MAX) ? -1 : maxi;
     }
 };
 Time complexity - O(V+E)
@@ -51,15 +51,17 @@ public:
         vector<int> dist(n,INT_MAX); 
         k--;
         dist[k] = 0;
-        pq.push({k,dist[k]}); 
+         pq.push({dist[k],k}); 
         
         while(!pq.empty()){
-            auto [u,curr_dist] = pq.top(); pq.pop();
+            auto [curr_dist,u]  = pq.top(); pq.pop();
+            // if(dist[u] < curr_dist) continue;
+            
             for(auto child : adj[u]){
                 auto [v,wt] = child;
                 if(dist[u] + wt < dist[v]){
                     dist[v] = dist[u]+wt;
-                    pq.push({v,dist[v]});
+                    pq.push({dist[v],v});
                 }
             }
         }
@@ -85,17 +87,17 @@ public:
         vector<int> dist(n,INT_MAX); 
         k--;
         dist[k] = 0;
-        s.insert({k,dist[k]}); 
+        s.insert({dist[k],k}); 
         
         while(s.size()){
-            auto [u,curr_dist] = *s.begin(); s.erase(s.begin());
-            if(dist[u] < curr_dist) continue;
+            auto [curr_dist,u] = *s.begin(); s.erase(s.begin());
+            // if(dist[u] > curr_dist) continue;
             
             for(auto child : adj[u]){
                 auto [v,wt] = child;
                 if(dist[u] + wt < dist[v]){
                     dist[v] = dist[u]+wt;
-                    s.insert({v,dist[v]});
+                    s.insert({dist[v],v});
                 }
             }
         }
@@ -134,8 +136,3 @@ public:
 Time complexity - O(VE)
     
     
-
-
-
-// different
-
