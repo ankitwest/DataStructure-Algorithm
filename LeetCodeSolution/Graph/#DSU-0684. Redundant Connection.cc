@@ -47,11 +47,12 @@ Output: [1,4]
 
 DSU
 
-
-int find_par(int node,vector<int> &parent){
+class Solution2 {
+public:
+    int find_par(int node,vector<int> &parent){
         if(node==parent[node])
             return node;
-        else return parent[node]= find_par(parent[node],parent);
+        else return parent[node] = find_par(parent[node],parent);
     }
     
     void UNION(int a,int b,vector<int> &parent){
@@ -79,3 +80,4 @@ int find_par(int node,vector<int> &parent){
         }
         return ans;
     }
+};
