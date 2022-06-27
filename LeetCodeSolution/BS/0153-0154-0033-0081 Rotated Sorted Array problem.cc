@@ -2,6 +2,35 @@
 
 // 153. Find Minimum in Rotated Sorted Array
 
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int n = nums.size();
+        if(n==1)
+            return nums[0];
+        if(nums[0] < nums[n-1])
+            return nums[0];
+        
+        int l = 0; int h = n-1; 
+        while(l < h){
+            int mid = l + (h-l)/2;
+            if(nums[mid] > nums[h])
+                l = mid + 1;
+            else if(nums[mid] < nums[h])
+                h = mid;
+        }
+        return nums[l];
+    }
+};
+
+/*
+[25,26,33,37,5,11,12,16,23]
+[4,5,1,2,3]
+*/
+
+
+M-2
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -24,6 +53,35 @@ public:
         return 0;
     }
 };
+
+// 154. Find Minimum in Rotated Sorted Array II
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int n = nums.size();
+        if(n==1)
+            return nums[0];
+        if(nums[0] < nums[n-1])
+            return nums[0];
+        
+        int l=0; int h=n-1; 
+        while(l < h){
+            int mid = l + (h-l)/2;
+            if(nums[mid] > nums[h])
+                l = mid + 1;
+            else if(nums[mid] < nums[h])
+                h = mid;
+            else if(nums[mid] == nums[h])
+                h--;
+        }
+        return nums[l];
+    }
+};
+
+/*
+[3,1,3]
+1
+*/
 
 
 
