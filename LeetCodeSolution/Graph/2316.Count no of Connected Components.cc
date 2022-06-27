@@ -1,40 +1,7 @@
 2316. Count Unreachable Pairs of Nodes in an Undirected Graph
 
+//bfs  //dfs
 class Solution1 {
-public:
-    long long countPairs(int n, vector<vector<int>>& edges) {
-        vector<int> adj[n];
-        for(int i=0;i<edges.size();i++){
-            auto v = edges[i];
-            adj[v[0]].push_back(v[1]);
-            adj[v[1]].push_back(v[0]);
-        }
-        vector<int> vis(n,0);
-        auto dfs = [&](auto dfs,int u,int par,int &cnt)->void{
-            vis[u] = 1;
-            cnt++;
-            for(auto child : adj[u]){
-                if(child==par) continue;
-                if(!vis[child])
-                    dfs(dfs,child,u,cnt);
-            }
-        };
-        long long ans = 0; long long sum = 0;
-        vector<int> v;
-        for(int i=0;i<n;i++){
-            if(!vis[i]){
-                int cnt = 0;
-                dfs(dfs,i,-1,cnt);
-                ans += cnt*sum;
-                sum += cnt;
-            }
-        }
-        return ans;
-    }
-};
-
-
-class Solution2 {
 public:
       long long bfs(vector<int> adj[], int node, vector<int> &vis){
         long long cnt = 0;
@@ -93,80 +60,49 @@ public:
 class DSU
 {
     public:
-    vector<int>parent,size;
-    DSU(int n)
-    {
-        for(int i=0;i<n;++i)
-        {
-            parent.push_back(i);
-            size.push_back(1);
+    vector<int> parent;
+    vector<int> size;
+    DSU(int n){
+        parent.resize(n);
+        size.resize(n,1);
+        for(int i=0;i<n;++i){
+            parent[i] = i;
         }
     }
     
-    int findparent(int node)
-    {
+    int find_par(int node){
         if(parent[node]==node)
             return node;
-        return parent[node]=findparent(parent[node]);
+        return parent[node]=find_par(parent[node]);
     }
     
-    void unionOf(int n1,int n2)
+    void _union(int u,int v)
     {
-        int up1=findparent(n1);
-        int up2=findparent(n2);
-        if(up1==up2)
+        int a = find_par(u);
+        int b = find_par(v);
+        if(a == b)
             return;
         
-        if(size[up1]<size[up2])
-        {
-            size[up2]+=size[up1];
-            parent[up1]=up2;
-        }
-        else
-        {
-            size[up1]+=size[up2];
-            parent[up2]=up1;   
+        if(size[a] < size[b]){
+            size[b] += size[a];
+            parent[a] = b;
+        }else{
+            size[a] += size[b];
+            parent[b] = a;   
         }
     }
 };
-
-class Solution3 {
+// with dsu class
+class Solution22 {
 public:
-    // vector<int> parent;
-    // vector<int> rank;
-//     int find_par(int node){
-//         if(node==parent[node])
-//             return node;
-//         return parent[node] = find_par(parent[node]);
-//     }
-//     void union1( int a, int b, int n) 
-//     {
-//         int i = find_par(a);
-//         int j = find_par(b);
-        
-//          if (i != j) {
-//             if (rank[i] < rank[j])
-//                 swap(i, j);
-//             parent[j] = i;
-//             rank[i] += rank[j];
-//         }
-//     }
-    
     long long countPairs(int n, vector<vector<int>>& edges) {
-        // parent.resize(n,0);
-        // rank.resize(n,0);
-        // for(int i=0;i<n;i++){
-        //     parent[i] = i;
-        //     rank[i] = 1;
-        // }
         DSU dsu(n);
         for(int i=0;i<edges.size();i++){
             auto v = edges[i];
-            dsu.unionOf(v[0],v[1]);
+            dsu._union(v[0],v[1]);
         }
-        //map is better
         set<int> s;
-        for(int i=0;i<n;i++)  s.insert(dsu.findparent(i));
+        for(int i=0;i<n;i++)  s.insert(dsu.find_par(i));
         vector<int> v;
         for(auto i:s) v.push_back(dsu.size[i]);
         
@@ -179,51 +115,43 @@ public:
     }
 };
 
-
 class Solution{
 public:
-     int parent[100005];
-    int size[100005];
-    void make(int x){
-        parent[x]=x;
-        size[x]=1;
+     vector<int> parent;
+     vector<int> size;
+    void set_default(int n){
+        for(int i=0;i<n;i++){
+            parent[i] = i;
+        }
     }
-    int find(int x){
-        if(parent[x]==x) return x;
-        return parent[x]=find(parent[x]);
+    int find_par(int node){
+        if(parent[node] == node) return node;
+        return parent[node] = find_par(parent[node]);
     }
-    void Union(int a,int b){
-        a=find(a);
-        b=find(b);
-        if(a!=b){
-            if(size[a]<size[b]) swap(a,b);
-            parent[b]=a;
-            size[a]+=size[b];
+    void _union(int u,int v){
+        int a = find_par(u);
+        int b = find_par(v);
+        if(a != b){
+            if(size[a] < size[b]) swap(a,b);
+            parent[b] = a;
+            size[a] += size[b];
         }
     }
     long long countPairs(int n, vector<vector<int>>& edges) {
-        for(int i=0;i<n;++i){
-            make(i);
-        }
+        set_default(n);
+      
         unordered_map<int,int> mp;
         for(auto edge : edges){
-            Union(edge[0],edge[1]);
+            _union(edge[0],edge[1]); 
         }
         for(int i=0;i<n;++i){
-            mp[find(i)]++;
+            mp[find_par(i)]++;  //size
         }
         if(mp.size()==1) return 0;
         long long ans=0;
-        for(auto val : mp){
-            long long x=val.second;
-            ans+=x*(n-x);
+        for(auto [x,y] : mp){
+            ans+=y*(n-y);
         }
         return ans/2;
     }
 };
-
-
-
-
-
-    
