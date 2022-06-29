@@ -1,5 +1,29 @@
+We can observe that A wins game for n coins only when B loses for coins n-1 or n-x or n-y. 
 
+	
+class Solution {
+public:
 
+		public:
+	int findWinner(int n, int x, int y) {
+		// Your code goes here
+		vector<int> dp(n + 1,0);
+		dp[0] = false;
+		dp[1] = true;
+		for(int i = 2; i <= n; ++i) {
+		    if(i-1 >= 0 and dp[i-1]==false) 
+		        dp[i] = true;
+		    else if(i-x >= 0 and dp[i-x]==false) 
+		        dp[i] = true;
+		    else if(i-y >= 0 and dp[i-y]==false) 
+		        dp[i] = true;
+		    else 
+		        dp[i] = false;
+		}
+	    return dp[n];
+	}
+
+};
 class Solution {
 public:
 
