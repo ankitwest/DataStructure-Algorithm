@@ -22,22 +22,22 @@ public:
     }
     
     //Function to deserialize a list and construct the tree.
-    Node* deS(vector<int> &A,int &curr){
-        if(A[curr]==-1){
-            curr++;
-            return NULL;
-        }
-        Node* root = new Node(A[curr++]);
-        
-        root->left = deS(A,curr);
-        root->right = deS(A,curr);
-    
-        return root;
-    }
+        int index = 0;
     Node * deSerialize(vector<int> &A)
     {
-        int curr=0;
-       return deS(A,curr);
+        if(index==A.size())
+            return NULL;
+        
+        int val = A[index++];
+        
+        if(val==-1)
+            return NULL;
+        
+        Node* root = new Node(val);
+        root->left = deSerialize(A);
+        root->right = deSerialize(A);
+        
+        return root;
     }
 };
 Expected Time Complexity: O(N).
