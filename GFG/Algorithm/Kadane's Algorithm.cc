@@ -21,6 +21,8 @@ long long maxSubarraySum(int arr[], int n){
         return maxi;
     }
 };
+8
+-47 43 94 -94 -93 -59 31 -86
 
     
     
