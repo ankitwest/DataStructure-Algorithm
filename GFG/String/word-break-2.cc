@@ -1,34 +1,74 @@
-class Solution11 {
-    vector<string> result;
-    unordered_map<string,int>freq;
-    void solve(int i,string s, vector<string>& wordDict,string res)
-    {
-        if(i==s.size()){
-            res.pop_back();
-            result.push_back(res);
+// Expected Time Complexity: O(N^2*n) 
+// Expected Auxiliary Space: O(N^2)
+
+class Solution0 {
+    vector<string> ans;
+    unordered_map<string,int> m;
+    void solve(int idx,string s,string temp){
+        if(idx==s.size()){
+            temp.pop_back();
+            ans.push_back(temp);
             return;
         }
         
+        string prev = temp;
+        for(int i=0;i<s.size();i++){
+            string left = s.substr(0,i+1);
+            string right = s.substr(i+1);
+            if(m.count(left)){
+                temp = temp + left + " ";
+                solve(0,right,temp);
+                temp = prev;
+            }
+        }
+    }
+public:    
+    vector<string> wordBreak(int n, vector<string>& wordDict, string s){
+        for(auto w :wordDict)
+            m[w]++;
+        solve(0,s,"");
+        
+        return ans;
+    }
+};
+
+
+
+//backtrack
+class Solution1 {
+    vector<string> ans;
+    unordered_map<string,int>freq;
+    void solve(int i,string s,string temp)
+    {
+        if(i==s.size()){
+            temp.pop_back();
+            ans.push_back(temp);
+            return;
+        }
+        
+        string prev = temp;
         for(int k=i;k<s.size();k++){
             string str = s.substr(i,k-i+1);
             if(freq.count(str)){
-                solve(k+1,s,wordDict,res + str + " ");
+                temp = temp + str + " ";
+                solve(k+1,s,temp);
+                temp = prev;
             }
         }
     }
 public:
     vector<string> wordBreak(int n, vector<string>& wordDict, string s)
     {
-        string res="";
+        string temp="";
         for(auto it : wordDict) freq[it]++;
-        solve(0,s,wordDict,res);
+        solve(0,s,temp);
         
-        return result;
+        return ans;
     }
 };
 
 
-
+//not good
 // with memoization
 class Solution {
     unordered_map<string, vector<string>> dp;
