@@ -23,11 +23,15 @@ class Solution{
                if(s[i]==s[len]){
                   lps[i++] = ++len;
                }else{
-                  if(len>0)
-                    len = lps[len-1];
-                    else{
-                        lps[i++]=0;
-                    }
+		    if(len==0)
+	                lps[i++] = 0;
+	            else
+	                len = lps[len-1];
+//                   if(len>0)
+//                     len = lps[len-1];
+//                     else{
+//                         lps[i++]=0;
+//                     }
                }
            }
         //   for(int i=0;i<n;i++) cout<<lps[i]<<" ";  cout<<endl;
@@ -74,15 +78,19 @@ class Solution{
 	       if(s[i]==s[len]){
 	           lps[i++] = ++len;
 	       }else{
+		    if(len==0)
+	                lps[i++] = 0;
+	            else
+	                len = lps[len-1];
 	             // their is some suffix is present possibly of 
 	           // length zero which is equal to preffix between string 0 to i-1
 	           // check wheter the prefix+1 is equal to ith elem or set
 	           // to len pointer to zero if not
-	           if(len>0){
-	               len = lps[len-1];
-	           }else{
-	               lps[i++] = 0;
-	           }
+// 	           if(len>0){      //both crt
+// 	               len = lps[len-1];
+// 	           }else{
+// 	               lps[i++] = 0;
+// 	           }
 	       }
 	       //cout<<len<<" ";
 	   }
