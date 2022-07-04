@@ -34,6 +34,17 @@ public:
         }
         };
 
+How does the above expression work? 
+
+This is simple mathematics, we compute decimal value of current window from previous window. 
+For example pattern length is 3 and string is “23456” 
+You compute the value of first window (which is “234”) as 234. 
+How  will you compute value of next window “345”? You will do (234 – 2*100)*10 + 5 and get 345.
+
+
+        
+        
+
 Input:
 S = "batmanandrobinarebat", pat = "bat"
 Output: 1 18
