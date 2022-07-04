@@ -7,7 +7,7 @@ Your Output:
 1 18 
   
   
-  
+//   The time complexity of KMP algorithm is O(n)
 
 class Solution{
    public:
