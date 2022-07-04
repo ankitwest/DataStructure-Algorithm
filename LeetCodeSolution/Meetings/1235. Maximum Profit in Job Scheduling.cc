@@ -2,13 +2,12 @@
 
 
 class Solution {
-public:
     int getNextJob(vector<array<int,3>> &jobs,int idx,int n){
         int low = idx+1;int high = n-1; 
-        int ans = n;
+        int ans = n; int end = jobs[idx][1];
         while(low<=high){
-            int mid = (low+high)>>1;
-            if(jobs[idx][1] <= jobs[mid][0])
+            int mid = low + (high-low)/2;
+            if(jobs[mid][0] >= end)
                 ans=mid,high=mid-1;
             else
                 low = mid+1;
@@ -17,7 +16,6 @@ public:
     }
     
     vector<int> dp;
-    
     int maxProfit(vector<array<int,3>> &jobs,int i,int n){
         if(i==n)
             return 0;
@@ -32,6 +30,7 @@ public:
         
         return dp[i] = max(incl,excl);
     }
+public:
     int jobScheduling(vector<int>& s, vector<int>& e, vector<int>& p)
     {
         int n = s.size();
@@ -45,6 +44,43 @@ public:
         return maxProfit(jobs,0,n);
     }
 };
+
+
+
+class Solution2 {
+    int getNextJobIndex(vector<array<int,3>> &jobs,int idx,int n){
+        int low = idx+1;int high = n-1; 
+        int ans = n; int end = jobs[idx][1];
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(jobs[mid][0] >= end)
+                ans=mid,high=mid-1;
+            else
+                low = mid+1;
+        }
+        return ans;
+    }
+public:
+    int jobScheduling(vector<int>& s, vector<int>& e, vector<int>& p)
+    {
+        int n = s.size();
+        vector<int> dp(n+1,0);
+        dp[n] = 0;
+        vector<array<int,3>> jobs;
+        for(int i=0;i<n;i++){
+            jobs.push_back({s[i],e[i],p[i]});
+        }
+        sort(jobs.begin(),jobs.end());
+        
+        for(int i=n-1;i>=0;i--){
+            int profit = jobs[i][2];
+            int next_index = getNextJobIndex(jobs,i,n);
+            dp[i] = max(dp[i+1], dp[next_index] + profit);
+        }
+        return dp[0];
+    }
+};
+
 Input: startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]
 Output: 120
 Explanation: The subset chosen is the first and fourth job. 
