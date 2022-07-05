@@ -1,21 +1,22 @@
-class Solution1 {
-public:
-    //DP to store and dfs to make calls to neighbours
+class Solution {
+public:  //better
+    //DP to store; and dfs to make calls to neighbours
+    int d[5] = {0,-1,0,1,0};
     vector<vector<int>> dp; int n,m;
-    int dfs(int i,int j,vector<vector<int>> &mat,int pre){
+    int dfs(vector<vector<int>> &mat,int i,int j,int pre){
         if(i<0 or j<0 or i>=n or j>=m or mat[i][j]<=pre) return 0;
         
         if(dp[i][j]!=-1) 
             return dp[i][j];
         
-        int l = dfs(i,j-1,mat,mat[i][j]);
-        int r = dfs(i,j+1,mat,mat[i][j]);
-        int u = dfs(i-1,j,mat,mat[i][j]);
-        int d = dfs(i+1,j,mat,mat[i][j]);
-        
-        int tot = max({l,r,u,d}) + 1;
-        return dp[i][j] = tot;
+        int tot = 0;
+        for(int k=0;k<4;k++){
+            int t = dfs(mat,i+d[k],j+d[k+1],mat[i][j]);
+            tot = max(tot, t);
+        }
+        return dp[i][j] = tot + 1;
     }
+
     int longestIncreasingPath(vector<vector<int>>& mat) {
         n = mat.size(); m = mat[0].size();
         dp.resize(n,vector<int>(m,-1));
@@ -23,7 +24,7 @@ public:
         int ans = 0;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                ans = max(ans,dfs(i,j,mat,-1));
+                ans = max(ans,dfs(mat,i,j,-1));
             }
         }
         
@@ -34,10 +35,27 @@ public:
 
 
 
-class Solution {
+
+
+//similar 
+//     int dfs(vector<vector<int>> &mat,int i,int j,int pre){   //also crt
+//         if(i<0 or j<0 or i>=n or j>=m or mat[i][j]<=pre) return 0;
+        
+//         if(dp[i][j]!=-1) 
+//             return dp[i][j];
+        
+//         int l = dfs(mat,i,j-1,mat[i][j]);
+//         int r = dfs(mat,i,j+1,mat[i][j]);
+//         int u = dfs(mat,i-1,j,mat[i][j]);
+//         int d = dfs(mat,i+1,j,mat[i][j]);
+              
+//         int tot = max({l,r,u,d}) + 1;
+//         return dp[i][j] = tot;
+//     }
+
+class Solution2 {
 public:
-    int dx[4] = {-1,1,0,0};
-    int dy[4] = {0,0,-1,1};
+    int d[5] = {0,-1,0,1,0};
     vector<vector<int>> dp; int n,m;
     int dfs(int i,int j,vector<vector<int>> &mat){
         if(i<0 or j<0 or i>=n or j>=m) return 0;
@@ -47,9 +65,9 @@ public:
         
         int ans = 0;
         for(int k=0;k<4;k++){
-            int a = i+dx[k]; int b = j+dy[k];
+            int a = i+d[k]; int b = j+d[k+1];
             if(a>=0 && b>=0 && a<n && b<m){
-                if(mat[i][j] > mat[a][b]){
+                if(mat[a][b] > mat[i][j]){
                     ans = max(ans, 1 + dfs(a,b,mat));
                 }
             }
@@ -63,7 +81,7 @@ public:
         int ans = 0;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                ans = max(ans,dfs(i,j,mat));
+                ans = max(ans, dfs(i,j,mat));
             }
         }
         
