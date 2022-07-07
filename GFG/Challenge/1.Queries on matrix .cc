@@ -66,3 +66,54 @@ Bob 1st remove 1, with the help of 2
 2 > 1 and 2<=1+1.
 Same way Bob removes 2 with heklp of 3.
 So final answer will be 1.
+    
+    
+    
+    
+    
+    
+    
+    // TC - O(Q+N*M)
+class Solution{
+  public:
+  vector<vector<int>> setMatrix(int n, int m, int q, vector<vector<int>> vec){
+      vector<vector<int>> grid(n,vector<int>(m,0));
+      for(auto v:vec){
+          //a,b   //a,d   
+          //c,b   //c,d   
+          int a = --v[0]; 
+          int b = --v[1];
+          int c = --v[2];
+          int d = --v[3];
+          grid[a][b] += 1;
+          if(c+1<n) grid[c+1][b] += -1;
+          if(d+1<m) grid[a][d+1] += -1;
+          if(c+1<n and d+1<m) grid[c+1][d+1] += 1;
+      }
+      
+      for(int i=0;i<n;i++){
+          for(int j=1;j<m;j++){
+              grid[i][j] = grid[i][j] + grid[i][j-1];
+          }
+      }
+      for(int j=0;j<m;j++){
+          for(int i=1;i<n;i++){
+              grid[i][j] = grid[i][j] + grid[i-1][j];
+          }
+      }
+      return grid;
+  }
+};
+
+/* 5 5
+2,2  4,4
+0  0  0  0  0 
+0  1  0  0 -1 
+0  0  0  0  0 
+0  0  0  0  0 
+0 -1  0  0  1 
+ 4,4  updated
+ 1,1 3,3
+*/
+
+
