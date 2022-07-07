@@ -1,9 +1,9 @@
-https://practice.geeksforgeeks.org/contest/challenge-1-array-matrix
+https://practice.geeksforgeeks.org/contest/challenge-1-array-matrix/problems/
 
-https://practice.geeksforgeeks.org/contest/challenge-2-searching-sorting
+https://practice.geeksforgeeks.org/contest/challenge-2-searching-sorting/problems/
 
-https://practice.geeksforgeeks.org/contest/challenge-3-strings
+https://practice.geeksforgeeks.org/contest/challenge-3-strings/problems/
 
-https://practice.geeksforgeeks.org/contest/challenge-4-link-list
+https://practice.geeksforgeeks.org/contest/challenge-4-link-list/problems/
 
-https://practice.geeksforgeeks.org/contest/challenge-5-stack-queue
+https://practice.geeksforgeeks.org/contest/challenge-5-stack-queue/problems/
