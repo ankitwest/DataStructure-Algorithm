@@ -7,3 +7,5 @@ https://practice.geeksforgeeks.org/contest/challenge-3-strings/problems/
 https://practice.geeksforgeeks.org/contest/challenge-4-link-list/problems/
 
 https://practice.geeksforgeeks.org/contest/challenge-5-stack-queue/problems/
+
+https://practice.geeksforgeeks.org/contest/challenge-6-tree-bst/problems/#
