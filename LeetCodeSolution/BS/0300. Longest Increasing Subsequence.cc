@@ -1,19 +1,25 @@
 
-
-// 3 line code lis
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<int> lis;
-        for(auto num:nums){
-            int idx = lower_bound(lis.begin(),lis.end(),num)-lis.begin();
-            if(idx==lis.size()) lis.push_back(num);
-            else lis[idx] = num;
+        int n = nums.size();
+        vector<int> lis;  lis.push_back(nums[0]); 
+        
+        for(int i=1;i<n;i++){
+            int num = nums[i];
+            if(num > lis.back()){
+                lis.push_back(num);
+            }else{
+                int idx = lower_bound(lis.begin(),lis.end(),num)-lis.begin();
+                lis[idx] = num;
+            }
         }
-        // for(auto num:lis) cout<<num<<" "; cout<<endl;
         return lis.size();
     }
 };
+
+
+//not good
 class Solution2 {
 public:
     int lengthOfLIS(vector<int>& nums) {
