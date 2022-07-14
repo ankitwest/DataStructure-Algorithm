@@ -9,36 +9,49 @@ class Solution{
 	    memset(dp,0,sizeof(dp));
 	    
 	    
-	   for(int i=0;i<=n;i++){
-	       dp[i][0] = 1;
-	   }
-	   for(int j=1;j<=sum/2;j++){
-	       dp[0][j] = 0;
-	   }
+	   for(int i=0;i<=n;i++)  dp[i][0] = 1;
+	   for(int j=1;j<=sum/2;j++)  dp[0][j] = 0;
+	   
 	   //dp[0][0] = 1;
 	   
-	   bool take = false;
-	   bool notTake = false;
+	   bool ans = false;
 	    for(int i=1;i<=n;i++){
 	        for(int j=1;j<=sum/2;j++){
 	            if(j>=arr[i-1]) {
-	                take = dp[i-1][j-arr[i-1]];
+	                ans = dp[i-1][j-arr[i-1]] or dp[i-1][j];
+	            }else{
+	                ans = dp[i-1][j];
 	            }
-	                
-	           notTake = dp[i-1][j];
-	           dp[i][j] = take or notTake;
+	           
+	           dp[i][j] = ans;
 	        }
 	    }
 	    
-	    int ans = INT_MAX;
+	    int min_sum = INT_MAX;
 	    for(int i=0;i<=sum/2;i++){
 	        if(dp[n][i]==true){
-	            ans = min(ans, sum - 2*i);
+	            min_sum = min(min_sum , sum - 2*i);
 	        }
 	    }
-	    return ans;
+	    return min_sum;
 	} 
 };
+
+
+/*
+bool take = false;
+bool notTake = false;
+for(int i=1;i<=n;i++){
+    for(int j=1;j<=sum/2;j++){
+        if(j>=arr[i-1]) {
+            take = dp[i-1][j-arr[i-1]];
+        }
+            
+       notTake = dp[i-1][j];
+       dp[i][j] = take or notTake;
+    }
+}
+*/
 
 
 
