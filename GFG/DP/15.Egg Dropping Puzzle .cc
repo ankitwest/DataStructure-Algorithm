@@ -1,8 +1,4 @@
-// { Driver Code Starts
-#include<bits/stdc++.h>
-using namespace std;
 
- // } Driver Code Ends
 class Solution
 {
     public:
@@ -33,21 +29,37 @@ class Solution
     }
 };
 
-// { Driver Code Starts.
-int main()
-{
-    //taking total testcases
-    int t;
-    cin>>t;
-    while(t--)
-    {
-        //taking eggs and floors count
-        int n, k;
-        cin>>n>>k;
-        Solution ob;
-        //calling function eggDrop()
-        cout<<ob.eggDrop(n, k)<<endl;
+
+
+//  dp[n][k]
+
+class Solution {
+    public:
+     vector<vector<int>> dp;
+    int solve(int n,int egg){
+        if(n==0 or n==1) return n;
+        if(egg==1) return n;
+         
+        
+        if(dp[n][egg]!=-1)
+            return dp[n][egg];
+        
+        int ans = INT_MAX;
+        for(int i=1;i<=n;i++){  // floor 1 to floor n
+            // upper building  n-i floor left
+            // lower building  i-1 floor with egg-1
+            int curr = 1 + max(solve(n-i,egg), solve(i-1,egg-1));
+            ans = min(ans, curr);
+        }
+        
+        return dp[n][egg] = ans;
     }
-    return 0;
-}
-  // } Driver Code Ends
+    int eggDrop(int n, int k) 
+    {
+        int egg = n;
+        n = k;
+
+        dp.resize(n+1,vector<int> (egg+1,-1));
+        solve(n,egg);
+    }
+};
