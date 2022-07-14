@@ -1,0 +1,6 @@
+API_KEY=fae117c44d55ef832bd306bb456eea2c
+
+GOOGLE_CLIENT_ID=610411734508-nevnlvajp2bm3kqf1st1jbl1hjdmgc2n.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+
+SECRET=alliswell
