@@ -6,7 +6,7 @@ Explanation: Four Possible ways are:
 {1,1,1,1},{1,1,2},{2,2},{1,3}.
 
 
-// QA coin change	
+// Q? coin change	
 // combination	
 
 class Solutin{
@@ -27,33 +27,42 @@ class Solutin{
 };
 
 
-//QA min coin
+//Q? min coin
 // find min no of coins to make up target
 
 
  class Solution {   
     public:
-	int minCoins(int coins[], int n, int amt) 
-	{ 
-	   int maxi = amt+1;
+	int MinCoin(vector<int>coins, int amt)
+	{
+	    int maxi = amt+1;
+	    vector<int> dp(amt+1,maxi);
+	    dp[0]=0;
+	    
+	    for(auto coin:coins){
+	        for(int j=1;j<=amt;j++){
+	            if(coin<=j)
+	                dp[j] = min(dp[j],1 + dp[j-coin]);
+	        }
+	    }
 
-	   vector<int> dp(amt+1,maxi);
+	    return dp[amt]>amt?-1:dp[amt];
+	}
+};
+
+class Solution {
+public:    
+    int MinCoin(vector<int>coins, int amt){ 
+	 int maxi = amt+1;
+	vector<int> dp(amt+1,maxi);
 	   dp[0] = 0;
-	   
-	   sort(coins,coins+n);
-	   
-	   for(int i=0;i<n;i++){
-	       for(int j=coins[i];j<=amt;j++){
-	           dp[j] = min(dp[j],1+dp[j-coins[i]]);
+
+	for(int j=1;j<=amt;j++){
+	    for(auto coin:coins){
+		   if(coin<=j)
+		      dp[j] = min(dp[j],1 + dp[j-coin]);
 	       }
-	   }
-// both one
-//         for(int j=1;j<=amt;j++){
-//             for(auto coin:coins){
-// 	        if(coin<=j)
-// 	          dp[j] = min(dp[j],dp[j-coin]+1);
-// 	    }
-// 	}
+	    }
 	   return dp[amt]>amt?-1:dp[amt];
 	} 
 };
@@ -61,7 +70,8 @@ class Solutin{
 
 
 
-//QA Another coin change problem
+
+//Q? Another coin change problem
 // make up target from infinite coins but only k coins
 
 class Solution{
