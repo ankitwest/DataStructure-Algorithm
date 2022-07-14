@@ -2,6 +2,7 @@ class Solution
 {
 public:
  vector<int> dp;
+ unordered_map<string,int> m;
     int solve(int i,string s,vector<string>& wordDict){
         if(i==s.size()){
             return true;
@@ -13,7 +14,8 @@ public:
         bool ans = false;
         for(int k=i;k<s.size();k++){
             string str = s.substr(i,k-i+1);
-            if(find(wordDict.begin(), wordDict.end(), str) != wordDict.end()){
+            // if(find(wordDict.begin(), wordDict.end(), str) != wordDict.end()){
+            if(m.count(str)){
                 if(solve(k+1,s,wordDict))
                     ans = true;
             }
@@ -22,10 +24,12 @@ public:
     }
     int wordBreak(string A, vector<string> &B) {
         int n = A.size();
+        for(auto s:B) m[s]++;
         dp.resize(n,-1);
       return solve(0,A,B);
     }
 };
+
 
 
 
