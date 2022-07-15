@@ -21,12 +21,14 @@ class Solution{
                      if(A[i-1]==C[i+j-1])
                          dp[i][j] = dp[i-1][j];
                 }
-                else if(A[i-1]==C[i+j-1] and B[j-1]!=C[i+j-1]) 
-                    dp[i][j]=dp[i-1][j];
-                else if(A[i-1]!=C[i+j-1] and B[j-1]==C[i+j-1]) 
-                    dp[i][j]=dp[i][j-1];
-                else if(A[i-1]==C[i+j-1] and B[j-1]==C[i+j-1]) 
-                    dp[i][j]=dp[i][j-1] or dp[i-1][j];
+                else {
+                    if(A[i-1]==C[i+j-1] and B[j-1]!=C[i+j-1]) 
+                        dp[i][j]=dp[i-1][j];
+                    else if(A[i-1]!=C[i+j-1] and B[j-1]==C[i+j-1]) 
+                        dp[i][j]=dp[i][j-1];
+                    else if(A[i-1]==C[i+j-1] and B[j-1]==C[i+j-1]) 
+                        dp[i][j]=dp[i][j-1] or dp[i-1][j];
+                }
             }
         }
         return dp[size1][size2];
