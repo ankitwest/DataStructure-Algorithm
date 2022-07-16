@@ -1,18 +1,18 @@
-
-
-// class Solution {
+// class SolutionTLE {
 // public:
-//    bool helper(int idx,vector<int>&nums,int curr,int tar,int k,vector<bool>&vis){
+//    bool helper(int idx,vector<int>&nums,int curr,int sum,int k,vector<bool>&vis){
 //         if(k==0)
 //             return true;
-//         if(curr==tar)
-//             return helper(0,nums,0,tar,k-1,vis);
+//         if(curr>sum)
+//             return false;
+//         if(curr==sum)
+//             return helper(0,nums,0,sum,k-1,vis);
         
         
 //         for(int i=idx;i<nums.size();i++){
-//             if(!vis[i] and curr+nums[i]<=tar){
+//             if(!vis[i] and curr+nums[i]<=sum){
 //                 vis[i]=true;
-//                 if(helper(i+1,nums,curr+nums[i],tar,k,vis))return true;
+//                 if(helper(i+1,nums,curr+nums[i],sum,k,vis))return true;
 //                 vis[i]=false;
 //             }
 //         }
@@ -28,6 +28,7 @@
         
 //         int sum = accumulate(nums.begin(),nums.end(),0);
 //         if(sum%k!=0) return false;
+        
 //         int curr = 0; int cnt = 0;
 //         return helper(0,nums,0,sum/k,k,vis);
 //     }
