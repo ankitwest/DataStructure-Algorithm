@@ -1,5 +1,4 @@
-      //DP(recursive+memoization)
-class Solution {
+class Solution1 {
 public:
      int uniquePaths(int m, int n) {
          vector<vector<int>> dp(m,vector<int>(n, 0));
@@ -23,12 +22,10 @@ class Solution2 {
 public:
     int uniquePaths(int m, int n) {
         vector<vector<int>> dp(m,vector<int>(n, 0));
-        for(int i=0;i<m;i++){
-             dp[i][0]=1;
-        }
-        for(int j=0;j<n;j++){
-             dp[0][j]=1;
-        }
+        
+        for(int i=0;i<m;i++) dp[i][0]=1;
+        for(int j=0;j<n;j++) dp[0][j]=1;
+        
         
         for(int i=1;i<m;i++){
             for(int j=1;j<n;j++){
@@ -41,8 +38,6 @@ public:
 
 
 
-
-
 class Solution3 {
 public:
     int uniquePaths(int m, int n) {
@@ -50,7 +45,7 @@ public:
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 cur[j] += cur[j - 1];
-//                 cout<<cur[j]<<" ";
+                // cout<<cur[j]<<" ";    // prev[j] === cur[j]
             }
             cout<<endl;
         }
@@ -59,6 +54,35 @@ public:
 };
 
 
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        int N = n + m - 2;
+        int r = m - 1;
+        //N C r  10C3 
+        
+        double ans = 1;
+        for (int i = 1; i <= r; i++) {
+            ans = ans * (N - r + i) / i;
+        }
+        return (int)ans;
+    }
+};
+
+
+/*
+n-1 and m-1 directions to go
+n+m-2Cn  n+m-2Cm
+
+if we choose one direction set then other will automatically get filled
+
+S _ _
+_ _ E
+
+D _ _
+_ D _
+_ _ D
+*/
 
 
 
