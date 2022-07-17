@@ -1,4 +1,4 @@
-class Solution
+class Solution1
 {
     public:
     //Function to find if there is a celebrity in the party or not.
@@ -21,40 +21,38 @@ class Solution
         
         int ctr=0;
         for(int i=0;i<n;i++){
-            if(i!=ans and (M[i][ans]==0 or M[ans][i]==1)) 
-            return -1;
+            if(i!=ans){
+                if(M[i][ans]==0 or M[ans][i]==1)
+                    return -1;
+            }
         }
         return ans;
     }
 };
 
-
-class Solution2
+// two pointer technique
+class Solution
 {
-public:    
-    int celebrity(vector<vector<int> >& m, int n) {
-        int a=0;
-        int b=n-1;
-        while(a<=b){  
-          if(m[a][b]==1) a++; 
-          else b--;
+public: 
+    int celebrity(vector<vector<int> >& M, int n) {
+        int i=0;
+        int j=n-1;
+        while(i<j){  
+           if(M[i][j]==1) i++; //i can't be celebrity
+           else j--;
         }
-        
-      int k=0,l=0;
-      for(int j=0;j<n;j++)
-      {
-          if(m[a][j]==0)
-          k++;
-      }
-      for(int i=0;i<n;i++)
-      {
-          if(m[i][a]==1)
-          l++;
-      }
-      if(k==n and l==n-1)
-      return a;
-      else
-      return -1;
+        // j points to our celebrity candidate
+        int candidate = j;
+
+        for(int i=0;i<n;i++)
+        {
+            if(i!=candidate){
+                if(M[i][candidate]==0 or M[candidate][i]==1)
+                    return -1;
+            }
+             
+        }
+        return candidate;
     }
 };
 
