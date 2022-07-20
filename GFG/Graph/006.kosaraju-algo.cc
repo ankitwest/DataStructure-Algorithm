@@ -1,6 +1,7 @@
-class Solution{
-  public:
-  	//Function to find number of strongly connected components in the graph.
+class Solution
+{
+	public:
+	//Function to find number of strongly connected components in the graph.
     void dfs(int node,vector<int> &vis,vector<int> adj[],stack<int> &st){
         vis[node]=1;
         for(auto x:adj[node])
@@ -10,11 +11,11 @@ class Solution{
         st.push(node);
     }
 
-    void revdfs(int node,vector<int> &vis,vector<int> transpose[]){
+    void rev_graph_dfs(int node,vector<int> &vis,vector<int> rev_graph[]){
         vis[node]=1;
-        for(auto x:transpose[node])
+        for(auto x:rev_graph[node])
             if(!vis[x])
-                revdfs(x,vis,transpose);
+                rev_graph_dfs(x,vis,rev_graph);
        
     }
     int kosaraju(int V, vector<int> adj[])
@@ -26,17 +27,17 @@ class Solution{
             if(!vis[i])
             dfs(i,vis,adj,st);
         }
-        vector<int> transpose[V];
+        vector<int> rev_graph[V];
         for(int i=0;i<n;i++){
             vis[i]=0;
             for(auto x:adj[i])
-                transpose[x].push_back(i);
+                rev_graph[x].push_back(i);
         }
         int scc=0;
         while(!st.empty()){
             int node = st.top();st.pop();
                 if(!vis[node]){
-                    scc++;revdfs(node,vis,transpose);
+                    scc++;rev_graph_dfs(node,vis,rev_graph);
                 }
         }
          return scc;
