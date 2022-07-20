@@ -43,6 +43,7 @@ public:
 
 
 
+//used vis vector for better simplicity
 class Solution {
 public:
     //Tarjan Algo
