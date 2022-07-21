@@ -36,23 +36,23 @@ class Node{
 
 
 void insertAtTail(Node* &head ,int val){
-	Node* n = new Node(val);
+    Node* n = new Node(val);
 
-	if(head==NULL){
-		    head = n;
-		return;
-		}
+    if(head==NULL){
+            head = n;
+        return;
+        }
 
-	Node* temp = head;
-	while(temp->next!=NULL){
-		temp = temp->next;
-	}
-	temp->next = n;
+    Node* temp = head;
+    while(temp->next!=NULL){
+        temp = temp->next;
+    }
+    temp->next = n;
 }
 void insertAtHead(Node* &head,int val){
-	Node* n = new Node(val);
-	n->next=head;
-	head = n;
+    Node* n = new Node(val);
+    n->next=head;
+    head = n;
 }
 
 void makeCycle(Node* &head,int pos){
@@ -98,20 +98,18 @@ void removeLoopGfg(Node* head){
         if(fast==slow) break;  //if cycle found
     }
     if(slow!=fast) return; //no cycle
-           
-    if(slow==head){
-        while(fast->next!=slow){
+        
+    fast = head;
+    if(slow==fast){
+        while(fast->next!=slow)
             fast=fast->next;
-        }
-        fast->next=NULL;
     }else{
-        fast=head;
         while(slow->next!=fast->next){
             slow=slow->next;
             fast=fast->next;
         }
-        slow->next = NULL;
     }
+    fast->next=NULL;
 }
  void removeLoop(Node* head){
         if(!head or !head->next) return;
@@ -133,23 +131,23 @@ void removeLoopGfg(Node* head){
         
     }
 void display(Node* head){
-	Node* temp = head;
-	while(temp!=NULL){
-		cout<<temp->data<<"->";
-		temp = temp->next;
-	}
+    Node* temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<"->";
+        temp = temp->next;
+    }
     
-	cout<<"NULL"<<endl; 
+    cout<<"NULL"<<endl; 
 }
 
 int main()
 {
     Node* head=NULL;
     insertAtTail(head,1);
-	insertAtTail(head,2);
-	insertAtTail(head,3);
-	insertAtTail(head,4);
-	insertAtTail(head,5);
+    insertAtTail(head,2);
+    insertAtTail(head,3);
+    insertAtTail(head,4);
+    insertAtTail(head,5);
     insertAtTail(head,6);
     insertAtTail(head,7);
     insertAtTail(head,8);
