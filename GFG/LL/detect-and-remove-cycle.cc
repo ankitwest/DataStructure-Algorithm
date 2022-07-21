@@ -113,7 +113,7 @@ void removeLoopGfg(Node* head){
 }
  void removeLoop(Node* head){
         if(!head or !head->next) return;
-        Node *slow=head,*fast=head,*prev=0;
+        Node *slow=head,*fast=head,*prev=nullptr;
     
         while(fast and fast->next){
            prev=slow , slow=slow->next , fast=fast->next->next;       
@@ -127,9 +127,12 @@ void removeLoopGfg(Node* head){
             prev= slow , slow=slow->next , fast=fast->next;
         }
 
-        prev->next=0;
+        prev->next=nullptr;
         
     }
+   // loop at random pos
+    // loop at starting pos
+
 void display(Node* head){
     Node* temp = head;
     while(temp!=NULL){
