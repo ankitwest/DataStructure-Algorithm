@@ -1,6 +1,3 @@
-
-
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -12,49 +9,56 @@
  * };
  */
 class Solution {
-public:
-    ListNode* reverseList(ListNode* head){
-        if(head==NULL or head->next==NULL) return head;
+//     ListNode* rev(ListNode* head){  //old
+//         if(head or head->next) return head;
         
-        ListNode* dummy=NULL;
-        ListNode* nex=head->next;
+//         ListNode* dummy = NULL;
+//         ListNode* nex = head->next;
+//         head->next = dummy;
         
-        head->next=dummy;
-        while(nex!=NULL){
-            dummy=head;
-            head=nex;
-            nex=nex->next;
-            head->next=dummy;
+//         while(nex!=NULL){
+//             dummy=head;
+//             head=nex;
+//             nex=nex->next;
+//             head->next=dummy;
+//         }
+//         return head;
+//     }
+    ListNode* rev(ListNode* head){
+        if(head or head->next) return head;
+        
+        ListNode* next = nullptr;
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while(curr){
+            next = head->next;
+            head->next = prev;
+            prev = curr;
+            curr = next;
         }
-        return head;
+        return prev;
     }
-    
+public:
     bool isPalindrome(ListNode* head) {
-        if(head==NULL or head->next==NULL) return true;
+        if(head or head->next) return true;
         
-        ListNode* fast=head;
-        ListNode* slow=head;
+        ListNode* fast = head;
+        ListNode* slow = head;
         
-        while(fast->next!=NULL&&fast->next->next!=NULL){
-            slow=slow->next;
-            fast=fast->next->next;
+        while(fast and fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
-        // ListNode* rev=reverseList(slow->next);
-        // slow->next=rev;
+        slow->next = rev(slow->next);
+        slow = slow->next;
         
-        slow->next=reverseList(slow->next);
-        slow=slow->next;
-        
-        while(slow!=NULL){
-            if(slow->val!=head->val)
+        while(slow){
+            if(slow->val != head->val)
                 return false;
-            slow=slow->next;
-            head=head->next;
+            slow = slow->next;
+            head = head->next;
         }
         return true;
     }
 };
-
-Input: head = [1,2,2,1]
-Output: true
