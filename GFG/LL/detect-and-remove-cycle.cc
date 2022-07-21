@@ -99,7 +99,7 @@ void removeLoopGfg(Node* head){
     }
     if(slow!=fast) return; //no cycle
         
-    fast = head;
+    slow = head;
     if(slow==fast){
         while(fast->next!=slow)
             fast=fast->next;
