@@ -24,6 +24,10 @@ public:
     }
 };
 
+//min part is optimal step of opponent but
+//max part is optimal step of mine
+
+
 
 //tabulation
 class Solution {
