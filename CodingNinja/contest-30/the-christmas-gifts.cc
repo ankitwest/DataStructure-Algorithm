@@ -44,3 +44,5 @@ vector<vector<int>> dp(n+1,vector<int> (k+1,-1));
 partial crrt 
 tle
 approach 1
+
+    https://www.codingninjas.com/codestudio/contests/codestudio-weekend-contest-30/5563209/problems/17345?leftPanelTab=0
