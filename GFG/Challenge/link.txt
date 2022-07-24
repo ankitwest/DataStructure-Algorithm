@@ -8,4 +8,9 @@ https://practice.geeksforgeeks.org/contest/challenge-4-link-list/problems/
 
 https://practice.geeksforgeeks.org/contest/challenge-5-stack-queue/problems/
 
+
 https://practice.geeksforgeeks.org/contest/challenge-6-tree-bst/problems/#
+
+https://practice.geeksforgeeks.org/contest/challenge-7-graph/problems/#
+
+https://practice.geeksforgeeks.org/contest/challenge-8-greedy-heap/problems/#
