@@ -89,3 +89,72 @@ class Solution {
         return ans;
     }
 };
+
+
+
+
+
+
+
+class Solution{
+public:
+	vector<int> res;
+	void findTopoSort(int node,stack<int>& st,vector<int> adj[],vector<bool>& vis)
+	{
+	    vis[node]=1;
+	    for(auto neigh:adj[node]){
+	        if(!vis[neigh])
+	            findTopoSort(neigh,st,adj,vis);
+	    }
+	    st.push(node);
+	} 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    
+	   vector<bool> vis(V,false);
+	   stack<int>st;
+	   for(int i=0;i<V;i++){
+	       if(!vis[i])
+	        findTopoSort(i,st,adj,vis);
+	   }
+	   
+	   while(!st.empty()){
+	       int x = st.top();st.pop();
+	       res.push_back(x);
+	   }
+	   return res;
+	}
+};
+
+
+class Solution23
+{
+ public:
+    vector<int> findOrder(int n, int m, vector<vector<int>> pre) {
+        vector<vector<int>> adj(n);
+        vector<int> in_degree(n,0);
+        for(int i=0;i<pre.size();i++){
+            adj[pre[i][1]].push_back(pre[i][0]);
+            in_degree[pre[i][0]]++;
+        }
+        queue<int> q;
+        for(int i=0;i<n;i++){
+            if(in_degree[i]==0) q.push(i);
+        }
+        
+        vector<int> toposort;
+        while(!q.empty())
+        {
+            auto node = q.front();q.pop();
+            toposort.push_back(node);
+            for(auto neigh:adj[node])
+            {
+                in_degree[neigh]--;
+                if(in_degree[neigh]==0) q.push(neigh);
+            }
+        }
+        
+        if(toposort.size()==n) return toposort;
+        return {};
+    }
+};
