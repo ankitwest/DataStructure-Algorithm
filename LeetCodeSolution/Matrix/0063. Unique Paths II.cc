@@ -1,41 +1,20 @@
-
-
-class Solution1 {
+class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obs) {
         int m = obs.size(); int n = obs[0].size();
-        vector<vector<int>> dp(m,vector<int>(n, 0));
+        vector<vector<int>> dp(m,vector<int>(n, -1));
         
-//         auto solve = [&dp,&obs,&m,&n](auto solve,int i,int j){
-//             if(i==m or j==n)
-//                 return 0;
-//              if(obs[i][j]==1)
-//                 return dp[i][j]=0;
-                 
-//             if(i==m-1 && j==n-1 and obs[i][j]==0)
-//                 return 1;
-            
-//             if(dp[i][j]!=0)
-//                 return dp[i][j];
-            
-//             int ways = 0;
-//             if(obs[i][j]==0)
-//              ways = solve(solve,i+1,j) + solve(solve,i,j+1);
-            
-//             return dp[i][j] = ways;
-//         };
-//         return solve(solve,0,0);
-            
       auto solve = [&dp,&obs](auto solve,int i,int j){
             if(i<0 or j<0)
                 return 0;
+          
             if(obs[i][j]==1)
-                return dp[i][j]=0;
+                return 0;
             
             if(i==0 and j==0 and obs[i][j]==0)
                 return 1;
             
-            if(dp[i][j]!=0)
+            if(dp[i][j]!=-1)
                 return dp[i][j];
             
             int ways = 0;
@@ -50,7 +29,7 @@ public:
 };
 
 
-class Solution {
+class Solution2 {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obs) {
         int m = obs.size(); int n = obs[0].size();
@@ -72,3 +51,40 @@ public:
         return dp[m-1][n-1];
     }
 };
+
+
+
+class Solution3 {
+public: 
+    int uniquePathsWithObstacles(vector<vector<int>>& obs) {
+        int m = obs.size(); int n = obs[0].size();
+        vector<vector<int>> dp(m,vector<int>(n, -1));
+        
+        auto solve = [&dp,&obs,&m,&n](auto solve,int i,int j){
+            if(i==m or j==n)
+                return 0;
+            
+             if(obs[i][j]==1)
+                return 0;
+                 
+            if(i==m-1 and j==n-1 and obs[i][j]==0)
+                return 1;
+            
+            if(dp[i][j]!=-1)
+                return dp[i][j];
+            
+            int ways = 0;
+            if(obs[i][j]==0)
+             ways = solve(solve,i+1,j) + solve(solve,i,j+1);
+            
+            return dp[i][j] = ways;
+        };
+        return solve(solve,0,0);
+     }
+};
+  
+
+/*
+[[1,0]]
+[[0,1]]
+*/
