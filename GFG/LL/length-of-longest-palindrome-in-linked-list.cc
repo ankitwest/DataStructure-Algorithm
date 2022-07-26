@@ -82,11 +82,13 @@ the length of the longest palindrome list. */
 int solve(Node* a, Node* b){
     int cnt = 0;
     while(a and b){
-        if(a->data != b->data) break;
+        if(a->data != b->data) {
             cnt++;
 
         a = a->next;
         b = b->next;
+        }else{
+            break;
     }
     return cnt;
 }
