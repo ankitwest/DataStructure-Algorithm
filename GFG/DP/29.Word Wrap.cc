@@ -1,35 +1,31 @@
-class Solution{
-  public:
-  vector<int> dp;
-    // no idea what's going on
-    int solve(int ind,int n,vector<int>& nums,int k){
-        if(ind>=n) 
+class Solution {
+public:
+    int dp[505][2005];
+    int solve(int i,int rem,vector<int>& arr,int k){
+        if(i == arr.size())
             return 0;
-        if(dp[ind]!=-1) 
-            return dp[ind];
-        
-        int ans = INT_MAX;
-        int sum = 0;
-        
-        for(int i=ind;i<n;i++){
-            sum += nums[i];
-            if(sum + (i-ind)<=k){
-                int cost = 0;
-                if(i!=n-1)
-                    cost = pow(k-sum-i+ind,2);
-                
-                ans = min(ans,cost+solve(i+1,n,nums,k));
-            }
+            
+        if(dp[i][rem]!=-1)
+            return dp[i][rem];
+            
+        int ans = 0;
+        if(arr[i] > rem){
+            ans = (rem + 1)*(rem + 1) + solve(i+1, k-arr[i]-1, arr, k);
+        }else{
+            int choice1 =  (rem + 1)*(rem + 1) + solve(i+1, k-arr[i]-1, arr, k);
+            int choice2 = solve(i+1, rem-arr[i]-1, arr, k);
+            ans = min(choice1, choice2);
         }
-        return dp[ind] = ans;
+        return dp[i][rem] = ans;
     }
     int solveWordWrap(vector<int>nums, int k) 
     { 
         int n = nums.size();
-        dp.resize(n,-1);
-        return solve(0,n,nums,k);
+        memset(dp,-1,sizeof(dp));
+        return solve(0,k,nums,k);
     } 
 };
+
 
 
 
