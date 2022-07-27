@@ -21,3 +21,7 @@ vector<int> arrange(vector<int> &A, vector<int> &B, int n) {
     }
     return ans;
 };
+
+
+height ,pos
+4,0 4,1 5,2
