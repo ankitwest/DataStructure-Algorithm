@@ -29,6 +29,43 @@ public:
 };
 
 
+class Solution {
+public:
+    vector<vector<int>>dp; 
+    int solve(int sum,vector<int>& a,int idx)
+    {  
+        if(sum==0)
+            return 0;
+        if(idx==1)
+        {
+            if(sum%a[idx-1]==0)
+                return sum/a[idx-1];
+            return 1e9;
+        }
+        
+        
+        if(dp[sum][idx]!=-1)
+         return dp[sum][idx];
+
+        int ans = 0;
+        if(sum >= a[idx-1])
+            ans = min(1 + solve(sum-a[idx-1],a,idx), solve(sum,a,idx-1));
+        else
+            ans = solve(sum,a,idx-1);
+        
+      return dp[sum][idx] = ans;
+    }
+     int coinChange(vector<int>& coins, int amt) {
+        int n = coins.size();
+        dp.resize(amt+1,vector<int>(n+1,-1));
+         
+        int ans = solve(amt,coins,n);
+         if(ans==1000000000) return -1;
+         return ans;
+    }
+};
+
+
 // 0518. Coin Change 2
 // Return the number of combinations that make up that amount. 
 
@@ -46,6 +83,39 @@ public:    //combination
             }
         }
         return dp[amt];
+    }
+};
+
+
+class Solution {
+public:
+    vector<vector<int>>dp;
+    int solve(int sum,vector<int>& a,int idx)
+    {  
+        if(sum==0)
+        return 1;
+        if(idx==0)
+        {
+            if(sum%a[idx]==0)
+                return 1;
+            
+            return 0;
+        }
+        
+        
+     if(dp[sum][idx]!=-1)
+         return dp[sum][idx];
+     int take=0;
+        if(sum>=a[idx])
+            take=solve(sum-a[idx],a,idx);
+       int nottake=solve(sum,a,idx-1);
+     
+     return dp[sum][idx]=take+nottake;
+    }
+    int change(int amount, vector<int>& coins) {
+        int n = coins.size();
+         dp.resize(amount+1,vector<int>(n,-1));
+       return  solve(amount,coins,n-1);
     }
 };
 
