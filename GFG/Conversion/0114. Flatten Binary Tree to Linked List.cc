@@ -1,6 +1,8 @@
 // Note:
 // if u want to reach at the last node use while(curr->next)
 
+GFG  
+https://practice.geeksforgeeks.org/problems/flatten-binary-tree-to-linked-list/1
 
 // Morris Traversal 
 // TC -  O(N) SC - O(1) space
