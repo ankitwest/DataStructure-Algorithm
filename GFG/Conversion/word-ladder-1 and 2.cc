@@ -1,6 +1,6 @@
 
 127. Word Ladder
-
+https://practice.geeksforgeeks.org/problems/word-ladder/0?category%5B%5D=BFS&page=1&query=category%5B%5DBFSpage1
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
