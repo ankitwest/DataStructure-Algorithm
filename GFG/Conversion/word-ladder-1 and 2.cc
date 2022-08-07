@@ -36,7 +36,8 @@ public:
     }
 };
 
-
+Expected Time Compelxity: O(N2 * M)
+Expected Auxiliary Space: O(N * M) where N = length of wordList and M = |wordListi|
 
 
 126. Word Ladder II
@@ -93,5 +94,9 @@ public:
         return ans;
     }
 };
+Expected Time Compelxity: O(N*(logN * M * 26))
+Expected Auxiliary Space: O(N * M) where N = length of wordList and M = |wordListi|
+
+
 
 //similar to word ladder 1 ; with dfs to find all path
