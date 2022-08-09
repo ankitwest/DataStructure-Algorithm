@@ -1,19 +1,7 @@
+// Q
 //Height
-
 class Solution{
     public:
-    //Function to find the height of a binary tree.
-    int height(struct Node* root){
-       if(!root) return 0;
-       return  1 + max(height(root->left),height(root->right));
-    }
-};
-
-
-
-class Solution{
-    public:
-    //Function to find the height of a binary tree.
     int height(struct Node* root){
        if(!root) return 0;
         
@@ -23,13 +11,14 @@ class Solution{
        return  1 + max(lh,rh);
     }
 };
-
-
 Expected Time Complexity: O(N)
 
     
     
+    
+    // Q
     //Diameter
+    
     
 class Solution {
   public:
@@ -48,13 +37,6 @@ class Solution {
        return dia;
     }
 };
-
-
-
-
-
-
-
 // Leetcode
 // Length of the path from 1 extreme node to another extreme node . Here {2,3,4,5} = 3
 class Solution {
@@ -67,7 +49,6 @@ class Solution {
         dia = max(lh+rh , dia);         // not adding 1 
         
         return 1+max(lh,rh);  
-        
     }
 public:
     int diameterOfBinaryTree(TreeNode* root) {
@@ -76,16 +57,12 @@ public:
         return dia;
     }
 
-};
 
-
-
-
+//Q
 // Is tree balanced
 
 class Solution{
     public:
-    //Function to check whether a binary tree is balanced or not.
     int height(Node* root,bool &flag){
         if(!root) return 0;
         
@@ -100,13 +77,29 @@ class Solution{
     bool isBalanced(Node *root)
     {
         bool flag=true;
-    //   cout<<height(root,flag)<<endl;
       height(root,flag);
        return flag;
        
     }
 };
-
+// without global variable
+class Solution {
+    int height(TreeNode* root){
+        if(!root) return 0;
+        
+        int lh=height(root->left);
+        int rh=height(root->right);
+        
+        if(lh==-1 or rh==-1 or abs(lh-rh)>1) return -1;
+        
+        return max(lh,rh)+1;
+    }
+public:
+    bool isBalanced(TreeNode* root) {
+        int h = height(root);
+        return h == -1 ? 0 : 1;
+    } 
+};
 
 Expected time complexity: O(N)
 
