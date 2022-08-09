@@ -18,3 +18,39 @@ public:
        return dia;
     }
 };
+
+
+
+// Path Sum
+//from any node to any node
+
+int findPathSum(TreeNode<int> *root,int &ans){
+    if(!root) return 0;
+    
+    int ls = max(0,findPathSum(root->left,ans));
+    int rs = max(0,findPathSum(root->right,ans));
+    
+    ans = max(ans, ls + rs + root->data);
+    
+    return max(ls,rs) + root->data;
+}
+
+int findPathSum2(TreeNode<int> *root,int &ans){
+    if(!root) return 0;
+    
+    int ls = findPathSum2(root->left,ans);
+    int rs = findPathSum2(root->right,ans);
+    
+    int temp = max(max(ls,rs) + root->data, root->data);
+    int res = max(temp, ls + rs + root->data);
+    ans = max(ans, res);
+
+    return temp;
+}
+int maxPathSum(TreeNode<int> *root)
+{
+   int ans = -1e9;
+    findPathSum2(root,ans);
+    return ans;
+
+}
