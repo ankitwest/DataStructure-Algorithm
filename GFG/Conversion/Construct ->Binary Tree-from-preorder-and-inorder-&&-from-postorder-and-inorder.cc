@@ -1,6 +1,7 @@
 
 // Given 2 Arrays of Inorder and preorder traversal. Construct a tree 
-    
+    https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+
 class Solution{
 unordered_map<int,int>m;
     Node* build(int in[],int pre[],int &start,int inS,int inE){
